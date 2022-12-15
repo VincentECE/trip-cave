@@ -8,20 +8,6 @@ export interface VisualControlType {
   goFullScreenOnElement: (elementId: string) => void;
 }
 
-// export const createVisualControlSlice: StateCreator<VisualControlType> =
-  // create<VisualControlType>((set, get) => ({
-    // currentVideo: coffeeVideo,
-    // hidden: false,
-
-    // setCurrentVideo: (currentVideo) => {
-    //   set({ currentVideo });
-    // },
-
-    // goFullScreenOnElement: (elementId: string) => {
-    //   document.getElementById(elementId)?.requestFullscreen();
-    // },
-//   }));
-
 export const createVisualControlSlice: StateCreator<
   VisualControlType,
   [],
@@ -40,5 +26,3 @@ export const createVisualControlSlice: StateCreator<
     },
 })
 
-
-//THIS NEEDS TO BE SET UP RIGHT

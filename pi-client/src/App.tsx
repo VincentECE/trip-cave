@@ -12,6 +12,15 @@ const App = (): JSX.Element =>  {
 
   const goFullScreenOnElement = useStore((state) => state.goFullScreenOnElement);
 
+  const handlePlayButton = () => {
+    // const video = document.getElementById('video') as HTMLVideoElement | null;
+    const video = document.getElementById('video') as HTMLVideoElement;
+    if (video != null) {
+            video.play();
+            console.log('should be playing')
+    }
+  }
+
   // useEffect(() => {
   //   const video = document.getElementById('video') as HTMLVideoElement | null;
 
@@ -29,6 +38,7 @@ const App = (): JSX.Element =>  {
       <header className="App-header">
         <img src={logo} id="poop" className="logo" alt="Vite logo" />
         <button onClick={()=> {goFullScreenOnElement('video')}}>FullScreen</button>
+        <button onClick={()=> {handlePlayButton()}}>Play</button>
          <VideoPlayer/>
       </header>
     </div>
