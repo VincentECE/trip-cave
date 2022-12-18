@@ -5,10 +5,12 @@ import coffeeVideo from "../assets/Coffee.mp4";
 export interface VisualControlType {
   currentVideo: string;
   hidden: boolean;
-  videoRef: any;
+  videoRef: any; //todo: strictly type this eventually...
+  videoRefIsLoaded: boolean;
   setCurrentVideo: (currentVideo: string) => void;
+  setVideoRef: (videoRef: any) => void;
   goFullScreenOnElement: (elementId: string) => void;
-  playVideo: (videoRef: HTMLVideoElement) => void;
+  playVideo: () => void;
 }
 
 export const createVisualControlSlice: StateCreator<
@@ -16,26 +18,36 @@ export const createVisualControlSlice: StateCreator<
   [],
   [],
   VisualControlType
-> = (set) => ({
+> = (set, get) => ({
   currentVideo: coffeeVideo,
   hidden: false,
-  videoRef: null,
+  videoRef: undefined,
+  videoRefIsLoaded: false,
 
   setCurrentVideo: (currentVideo) => {
-    const videoRef = useRef<HTMLVideoElement>(null);
-    set({ currentVideo, videoRef });
+    set({ currentVideo });
+  },
+
+  setVideoRef: (videoRef) => {
+    set({videoRef, videoRefIsLoaded: true})
+    console.log('videoRef Loaded')
   },
 
   goFullScreenOnElement: (elementId: string) => {
     document.getElementById(elementId)?.requestFullscreen();
   },
 
-  playVideo: (videoRef) => {
-    if (videoRef == null) {
-      return;
-    }
+  playVideo: async () => {
 
-    videoRef.current.play();
+    const videoRef = await get().videoRef;
+
+    // if (videoRef == null) {
+    //   return;
+    // }
+
+    console.log('playVideo from state')
+
+    videoRef.play();
     // console.log('videoRef: ', videoRef)
     // if (videoRef.paused) {
     //   videoRef.play();
