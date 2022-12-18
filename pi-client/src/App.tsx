@@ -10,16 +10,22 @@ const App = (): JSX.Element =>  {
  // const [counter, setCounter] = useState<number>(10);
   // const videoRef = useRef(null);
 
-  const goFullScreenOnElement = useStore((state) => state.goFullScreenOnElement);
+  // const goFullScreenOnElement = useStore((state) => state.goFullScreenOnElement);
+  const { goFullScreenOnElement, playVideo } = useStore((state) => ({
+    goFullScreenOnElement: state.goFullScreenOnElement,
+    playVideo: state.playVideo,
+  }));
 
-  const handlePlayButton = () => {
-    // const video = document.getElementById('video') as HTMLVideoElement | null;
-    const video = document.getElementById('video') as HTMLVideoElement;
-    if (video != null) {
-            video.play();
-            console.log('should be playing')
-    }
-  }
+  // const handlePlayButton = () => {
+  //   // const video = document.getElementById('video') as HTMLVideoElement | null;
+  //   const video = document.getElementById('video') as HTMLVideoElement;
+  //   if (video != null) {
+  //     if (video.paused) 
+  //     video.play(); 
+  //   else 
+  //     video.pause(); 
+  //   }
+  // }
 
   // useEffect(() => {
   //   const video = document.getElementById('video') as HTMLVideoElement | null;
@@ -38,7 +44,7 @@ const App = (): JSX.Element =>  {
       <header className="App-header">
         <img src={logo} id="poop" className="logo" alt="Vite logo" />
         <button onClick={()=> {goFullScreenOnElement('video')}}>FullScreen</button>
-        <button onClick={()=> {handlePlayButton()}}>Play</button>
+        <button onClick={()=> {playVideo()}}>Play</button>
          <VideoPlayer/>
       </header>
     </div>
@@ -46,3 +52,6 @@ const App = (): JSX.Element =>  {
 }
 
 export default App
+
+
+//video player.pause is not a function inside visualControlSlice
