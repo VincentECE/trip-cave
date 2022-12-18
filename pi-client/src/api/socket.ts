@@ -1,5 +1,5 @@
 import { io } from 'socket.io-client';
-import { useVisualControl } from '../store';
+import { useStore } from '../store';
 
 const serverUrl: string = process.env.REACT_APP_PI_URL || 'http://localhost:3001';
 
