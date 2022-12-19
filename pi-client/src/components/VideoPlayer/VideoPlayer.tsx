@@ -21,7 +21,7 @@ export const VideoPlayer = () => {
 
   return (
     <div className="Video-Container" id="video">
-      <button onClick={() => { playVideo(); }}>help me father</button>
+      <button onClick={() => { playVideo(); }}>Play</button>
       <video
         ref={videoRef}
         id="video-window"
