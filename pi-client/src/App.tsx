@@ -1,33 +1,55 @@
-import logo from './assets/react.svg'
-import './App.css'
+import logo from "./assets/react.svg";
+import "./App.css";
 import React, { useRef, useEffect, useState } from "react";
 import "./App.css";
-import { VideoPlayer } from "./components"
+import { VideoPlayer } from "./components";
 import { useStore } from "./store";
-import { VisualControlType } from './store/createVisualControlSlice';
+import { VisualControlType } from "./store/createVisualControlSlice";
+import { establishConnection, clientSocket } from "./socket";
 
-const App = (): JSX.Element =>  {
- // const [counter, setCounter] = useState<number>(10);
-  // const videoRef = useRef(null);
+export let ghettoPlay: any;
+export let ghettoFullScreen: any;
 
-  // const goFullScreenOnElement = useStore((state) => state.goFullScreenOnElement);
+const App = (): JSX.Element => {
   const { goFullScreenOnElement, playVideo } = useStore((state) => ({
     goFullScreenOnElement: state.goFullScreenOnElement,
     playVideo: state.playVideo,
   }));
 
+  ghettoPlay = playVideo;
+  ghettoFullScreen = goFullScreenOnElement;
+
   return (
     <div className="App">
       <header className="App-header">
         <img src={logo} id="poop" className="logo" alt="Vite logo" />
-        <button onClick={()=> {goFullScreenOnElement('video')}}>FullScreen</button>
-         <VideoPlayer/>
+        <button
+          onClick={() => {
+            goFullScreenOnElement("video");
+          }}
+        >
+          FullScreen
+        </button>
+        <button
+          onClick={() => {
+            establishConnection();
+          }}
+        >
+          Establish Connection
+        </button>
+        <button
+          onClick={() => {
+            clientSocket.emit("ServerHealthCheck");
+          }}
+        >
+          Server Health Ping
+        </button>
+        <VideoPlayer />
       </header>
     </div>
   );
-}
+};
 
-export default App
-
+export default App;
 
 //video player.pause is not a function inside visualControlSlice

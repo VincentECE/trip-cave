@@ -29,23 +29,23 @@ export const createVisualControlSlice: StateCreator<
   },
 
   setVideoRef: (videoRef) => {
-    set({videoRef, videoRefIsLoaded: true})
-    console.log('videoRef Loaded')
+    set({ videoRef, videoRefIsLoaded: true });
+    console.log("videoRef Loaded");
   },
 
   goFullScreenOnElement: (elementId: string) => {
+    console.log("should be going fullscreen");
     document.getElementById(elementId)?.requestFullscreen();
   },
 
   playVideo: async () => {
-
     const videoRef = await get().videoRef;
 
     // if (videoRef == null) {
     //   return;
     // }
 
-    console.log('playVideo from state')
+    console.log("playVideo from state");
 
     videoRef.play();
     // console.log('videoRef: ', videoRef)
@@ -56,5 +56,3 @@ export const createVisualControlSlice: StateCreator<
     // videoRef.pause();
   },
 });
-
-
