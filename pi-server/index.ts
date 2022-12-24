@@ -1,16 +1,29 @@
 import express from "express";
 require("dotenv").config();
-import { PORT } from "./app-values";
-import { piClientHandler } from "./src/socket-handlers";
+import { PI_CLIENT_PORT, MOBILE_CLIENT_PORT } from "./app-values";
+import { piClientHandler, mobileClientHandler } from "./src/socket-handlers";
 const app = express();
 import http from "http";
-const server = http.createServer(app);
+const piClient_server = http.createServer(app);
+const mobileClient_server = http.createServer(app);
 import { Server, Socket } from "socket.io";
+import { Console } from "console";
 // require("./db");
 // const PORT = process.env.PORT; //todo: add .env file
-const io = new Server(server, {
+app.use(express.static(__dirname + "../mobile-client/dist"));
+
+const piClient_io: Server = new Server(piClient_server, {
   cors: {
-    origin: "http://localhost:3000",
+    origin: "*", //todo: strictly only allow the correct addresses
+    credentials: false,
+  },
+  pingInterval: 2000,
+  pingTimeout: 5000,
+});
+
+const mobileClient_io: Server = new Server(mobileClient_server, {
+  cors: {
+    origin: "*", //todo: strictly only allow the correct addresses
     credentials: false,
   },
   pingInterval: 2000,
@@ -20,12 +33,36 @@ const io = new Server(server, {
 // app.use("/", pageRoutes);
 
 //registers all socket connections
-const onConnection = (socket: Socket) => {
-  piClientHandler(io, socket);
+const PiOnConnection = (socket: Socket) => {
+  piClientHandler(piClient_io, socket);
+  console.log("(src/index.ts) Something connected to the pi server!");
 };
 
-io.on("connection", onConnection);
+const mobileClientConnection = (socket: Socket) => {
+  mobileClientHandler(mobileClient_io, socket);
+  console.log(
+    "(src/index.ts) Something connected to the mobile client server!"
+  );
+};
 
-server.listen(PORT, () => {
-  console.log(`listening on :${PORT}`);
+piClient_io.on("connection", PiOnConnection);
+mobileClient_io.on("connection", mobileClientConnection);
+
+piClient_server.listen(PI_CLIENT_PORT, () => {
+  console.log(`piClient listening on :${PI_CLIENT_PORT}`);
 });
+
+mobileClient_server.listen(MOBILE_CLIENT_PORT, () => {
+  console.log(`mobileClient listening on ${MOBILE_CLIENT_PORT}`);
+});
+
+// app.listen(
+//   3003,
+//   "192.168.86.80",
+//   () => {
+//     console.log("jawn:");
+//   },
+//   function () {
+//     console.log(`listening on port ${3003}`);
+//   }
+// );
