@@ -1,6 +1,7 @@
 import { useRef } from "react";
 import create, { StateCreator } from "zustand";
 import coffeeVideo from "../assets/Coffee.mp4";
+import skyScrapersVideo from "../assets/Skyscrapers.mp4";
 
 export interface VisualControlType {
   currentVideo: string;
