@@ -4,15 +4,23 @@ import coffeeVideo from "../assets/Coffee.mp4";
 import skyScrapersVideo from "../assets/Skyscrapers.mp4";
 
 export interface VisualControlType {
-  currentVideo: string;
-  hidden: boolean;
-  videoRef: any; //todo: strictly type this eventually...
-  videoRefIsLoaded: boolean;
-  setCurrentVideo: (currentVideo: string) => void;
-  setVideoRef: (videoRef: any) => void;
+  currentVideo1: string;
+  currentVideo2: string;
+  video1Hidden: boolean;
+  video2Hidden: boolean;
+  video1Ref: any; //todo: strictly type this eventually...
+  video2Ref: any; //todo: strictly type this eventually...
+  video1RefIsLoaded: boolean;
+  video2RefIsLoaded: boolean;
+  setCurrentVideo1: (currentVideo: string) => void;
+  setCurrentVideo2: (currentVideo: string) => void;
+  setVideo1Ref: (videoRef: any) => void;
+  setVideo2Ref: (videoRef: any) => void;
+  playVideo1: () => void;
+  playVideo2: () => void;
+  pauseVideo1: () => void;
+  pauseVideo2: () => void;
   goFullScreenOnElement: (elementId: string) => void;
-  playVideo: () => void;
-  pauseVideo: () => void;
 }
 
 export const createVisualControlSlice: StateCreator<
@@ -21,38 +29,67 @@ export const createVisualControlSlice: StateCreator<
   [],
   VisualControlType
 > = (set, get) => ({
-  currentVideo: coffeeVideo,
-  hidden: false,
-  videoRef: undefined,
-  videoRefIsLoaded: false,
+  currentVideo1: coffeeVideo,
+  currentVideo2: skyScrapersVideo,
+  video1Hidden: false,
+  video2Hidden: false,
+  video1Ref: undefined,
+  video2Ref: undefined,
+  video1RefIsLoaded: false,
+  video2RefIsLoaded: false,
 
-  setCurrentVideo: (currentVideo) => {
-    set({ currentVideo });
+  setCurrentVideo1: (currentVideo1) => {
+    set({ currentVideo1 });
   },
 
-  setVideoRef: (videoRef) => {
-    set({ videoRef, videoRefIsLoaded: true });
+  setCurrentVideo2: (currentVideo2) => {
+    set({ currentVideo2 });
+  },
+
+  setVideo1Ref: (video1Ref) => {
+    set({ video1Ref, video1RefIsLoaded: true });
     console.log("videoRef Loaded");
+  },
+
+  setVideo2Ref: (video2Ref) => {
+    set({ video2Ref, video2RefIsLoaded: true });
+    console.log("video2Ref Loaded");
+  },
+
+  playVideo1: () => {
+    const video1Ref = get().video1Ref;
+
+    console.log("playVideo from state");
+
+    video1Ref.play();
+  },
+
+  playVideo2: () => {
+    const video2Ref = get().video1Ref;
+
+    console.log("playVideo from state");
+
+    video2Ref.play();
+  },
+
+  pauseVideo1: () => {
+    const video1Ref = get().video1Ref;
+
+    console.log("pauseVideo from state");
+
+    video1Ref.pause();
+  },
+
+  pauseVideo2: () => {
+    const video2Ref = get().video2Ref;
+
+    console.log("pauseVideo2 from state");
+
+    video2Ref.pause();
   },
 
   goFullScreenOnElement: (elementId: string) => {
     console.log("should be going fullscreen");
     document.getElementById(elementId)?.requestFullscreen();
-  },
-
-  playVideo: () => {
-    const videoRef = get().videoRef;
-
-    console.log("playVideo from state");
-
-    videoRef.play();
-  },
-
-  pauseVideo: () => {
-    const videoRef = get().videoRef;
-
-    console.log("pauseVideo from state");
-
-    videoRef.pause();
   },
 });
