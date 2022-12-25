@@ -1,9 +1,10 @@
 import { io, Socket } from "socket.io-client";
 import { useStore } from "../store";
-import { ghettoPlay, ghettoFullScreen } from "../App";
 
 // const serverUrl: string = process.env.REACT_APP_PI_URL || 'http://localhost:3001';
 const serverUrl: string = "http://localhost:3001";
+
+const { playVideo, pauseVideo } = useStore.getState();
 
 export let clientSocket: Socket;
 
@@ -29,11 +30,15 @@ export const establishConnection = () => {
 
   clientSocket.on("playVideo", () => {
     console.log("I should be playing something...");
-    ghettoPlay();
+    playVideo();
+  });
+
+  clientSocket.on("pauseVideo", () => {
+    console.log("Video should be paused");
+    pauseVideo();
   });
 
   clientSocket.on("goFullScreen", () => {
     console.log("I should be fullScreen...");
-    ghettoFullScreen("video");
   });
 };

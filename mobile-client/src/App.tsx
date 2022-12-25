@@ -1,9 +1,13 @@
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { establishConnection, mobileClientSocket } from "./socket";
 import reactLogo from "./assets/react.svg";
 import "./App.css";
 
-function App() {
+const App = (): JSX.Element => {
+  useEffect(() => {
+    establishConnection();
+  });
+
   return (
     <div className="App">
       <div>
@@ -44,6 +48,13 @@ function App() {
         >
           Play Video
         </button>
+        <button
+          onClick={() => {
+            mobileClientSocket.emit("pauseVideo");
+          }}
+        >
+          Pause Video
+        </button>
         <p>
           Edit <code>src/App.tsx</code> and save to test HMR
         </p>
@@ -53,6 +64,6 @@ function App() {
       </p>
     </div>
   );
-}
+};
 
 export default App;

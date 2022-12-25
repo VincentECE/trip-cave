@@ -2,13 +2,9 @@ import logo from "./assets/react.svg";
 import "./App.css";
 import React, { useRef, useEffect, useState } from "react";
 import "./App.css";
-import { VideoPlayer } from "./components";
+import { VideoPlayer1, VideoPlayer2 } from "./components";
 import { useStore } from "./store";
-import { VisualControlType } from "./store/createVisualControlSlice";
 import { establishConnection, clientSocket } from "./socket";
-
-export let ghettoPlay: any;
-export let ghettoFullScreen: any;
 
 const App = (): JSX.Element => {
   const { goFullScreenOnElement, playVideo } = useStore((state) => ({
@@ -16,8 +12,9 @@ const App = (): JSX.Element => {
     playVideo: state.playVideo,
   }));
 
-  ghettoPlay = playVideo;
-  ghettoFullScreen = goFullScreenOnElement;
+  useEffect(() => {
+    establishConnection();
+  });
 
   return (
     <div className="App">
@@ -25,7 +22,7 @@ const App = (): JSX.Element => {
         <img src={logo} id="poop" className="logo" alt="Vite logo" />
         <button
           onClick={() => {
-            goFullScreenOnElement("video");
+            goFullScreenOnElement("video1");
           }}
         >
           FullScreen
@@ -44,7 +41,7 @@ const App = (): JSX.Element => {
         >
           Server Health Ping
         </button>
-        <VideoPlayer />
+        <VideoPlayer1 />
       </header>
     </div>
   );

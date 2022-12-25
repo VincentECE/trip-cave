@@ -11,6 +11,7 @@ export interface VisualControlType {
   setVideoRef: (videoRef: any) => void;
   goFullScreenOnElement: (elementId: string) => void;
   playVideo: () => void;
+  pauseVideo: () => void;
 }
 
 export const createVisualControlSlice: StateCreator<
@@ -38,21 +39,19 @@ export const createVisualControlSlice: StateCreator<
     document.getElementById(elementId)?.requestFullscreen();
   },
 
-  playVideo: async () => {
-    const videoRef = await get().videoRef;
-
-    // if (videoRef == null) {
-    //   return;
-    // }
+  playVideo: () => {
+    const videoRef = get().videoRef;
 
     console.log("playVideo from state");
 
     videoRef.play();
-    // console.log('videoRef: ', videoRef)
-    // if (videoRef.paused) {
-    //   videoRef.play();
-    // } else {
-    // }
-    // videoRef.pause();
+  },
+
+  pauseVideo: () => {
+    const videoRef = get().videoRef;
+
+    console.log("pauseVideo from state");
+
+    videoRef.pause();
   },
 });
