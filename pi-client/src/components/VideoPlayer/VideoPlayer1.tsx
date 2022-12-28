@@ -7,15 +7,12 @@ export const VideoPlayer1 = (): JSX.Element => {
     useStore((state) => ({
       currentVideo1: state.currentVideo1,
       video1RefIsLoaded: state.video1RefIsLoaded,
-      setCurrentVideo1: state.setCurrentVideo1,
       setVideo1Ref: state.setVideo1Ref,
       playVideo1: state.playVideo1,
     }));
 
   useEffect(() => {
-    if (!video1RefIsLoaded) {
-      setVideo1Ref(videoRef.current);
-    }
+    setVideo1Ref(videoRef.current);
   }, []);
 
   return (
@@ -32,8 +29,9 @@ export const VideoPlayer1 = (): JSX.Element => {
         id="video-window"
         src={currentVideo1}
         width="100%"
-        // autoPlay
+        autoPlay
         controls
+        loop
       />
     </div>
   );

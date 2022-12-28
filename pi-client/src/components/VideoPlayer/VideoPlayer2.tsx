@@ -3,26 +3,24 @@ import { useEffect, useRef } from "react";
 
 export const VideoPlayer2 = (): JSX.Element => {
   const videoRef = useRef<HTMLVideoElement>();
-  const { currentVideo1, video1RefIsLoaded, setVideo1Ref, playVideo1 } =
+  const { currentVideo2, video2RefIsLoaded, setVideo2Ref, playVideo2 } =
     useStore((state) => ({
-      currentVideo1: state.currentVideo1,
-      video1RefIsLoaded: state.video1RefIsLoaded,
-      setCurrentVideo1: state.setCurrentVideo1,
-      setVideo1Ref: state.setVideo1Ref,
-      playVideo1: state.playVideo1,
+      currentVideo2: state.currentVideo2,
+      video2RefIsLoaded: state.video2RefIsLoaded,
+      setCurrentVideo2: state.setCurrentVideo2,
+      setVideo2Ref: state.setVideo2Ref,
+      playVideo2: state.playVideo2,
     }));
 
   useEffect(() => {
-    if (!video1RefIsLoaded) {
-      setVideo1Ref(videoRef.current);
-    }
+    setVideo2Ref(videoRef.current);
   }, []);
 
   return (
     <div className="Video-Container" id="video2">
       <button
         onClick={() => {
-          playVideo1();
+          playVideo2();
         }}
       >
         Play
@@ -30,10 +28,11 @@ export const VideoPlayer2 = (): JSX.Element => {
       <video
         ref={videoRef}
         id="video-window"
-        src={currentVideo1}
+        src={currentVideo2}
         width="100%"
-        // autoPlay
+        autoPlay
         controls
+        loop
       />
     </div>
   );

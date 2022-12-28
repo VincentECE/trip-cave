@@ -1,21 +1,47 @@
 import { useRef } from "react";
 import create, { StateCreator } from "zustand";
-import coffeeVideo from "../assets/Coffee.mp4";
-import skyScrapersVideo from "../assets/Skyscrapers.mp4";
-
-console.log("coffeeVideo: ", coffeeVideo);
+import { UnifiedStoreType } from "./useStore";
 
 export interface VisualControlType {
-  switchVideo: () => void;
+  playNextVideo: () => void;
+  playVideo: () => void;
+  pauseVideo: () => void;
 }
 
 export const createVisualControlSlice: StateCreator<
-  VisualControlType,
+  UnifiedStoreType,
   [],
   [],
   VisualControlType
 > = (set, get) => ({
-  switchVideo: () => {
-    console.log("switchVideo called");
+  playNextVideo: () => {
+    const { showPlayer1, showPlayer2 } = get();
+
+    console.log("from playNextVideo state");
+    if (showPlayer1) {
+      set({ showPlayer1: false, showPlayer2: true });
+    } else {
+      set({ showPlayer1: true, showPlayer2: false });
+    }
+  },
+
+  playVideo: () => {
+    const { playVideo1, playVideo2, showPlayer1, showPlayer2 } = get();
+
+    if (showPlayer1) {
+      playVideo1();
+    } else {
+      playVideo2();
+    }
+  },
+
+  pauseVideo: () => {
+    const { pauseVideo1, pauseVideo2, showPlayer1 } = get();
+
+    if (showPlayer1) {
+      pauseVideo1();
+    } else {
+      pauseVideo2();
+    }
   },
 });

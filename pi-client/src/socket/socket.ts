@@ -4,7 +4,8 @@ import { useStore } from "../store";
 // const serverUrl: string = process.env.REACT_APP_PI_URL || 'http://localhost:3001';
 const serverUrl: string = "http://localhost:3001";
 
-const { playVideo1, pauseVideo1 } = useStore.getState();
+const { playVideo1, pauseVideo1, playNextVideo, pauseVideo, playVideo } =
+  useStore.getState();
 
 export let clientSocket: Socket;
 
@@ -30,15 +31,21 @@ export const establishConnection = () => {
 
   clientSocket.on("playVideo", () => {
     console.log("I should be playing something...");
-    playVideo1();
+    playVideo();
   });
 
   clientSocket.on("pauseVideo", () => {
     console.log("Video should be paused");
-    pauseVideo1();
+    pauseVideo();
   });
 
   clientSocket.on("goFullScreen", () => {
     console.log("I should be fullScreen...");
+    //todo: have some fullscreen logic here
+  });
+
+  clientSocket.on("playNextVideo", () => {
+    playNextVideo();
+    //todo: playNextVideo will take in a string that's a URL to the next video
   });
 };

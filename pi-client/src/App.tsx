@@ -5,11 +5,12 @@ import "./App.css";
 import { VideoPlayer1, VideoPlayer2 } from "./components";
 import { useStore } from "./store";
 import { establishConnection, clientSocket } from "./socket";
+import { VideoPage } from "./features";
 
 const App = (): JSX.Element => {
   const { goFullScreenOnElement, playVideo } = useStore((state) => ({
     goFullScreenOnElement: state.goFullScreenOnElement,
-    playVideo: state.playVideo,
+    playVideo: state.playVideo1,
   }));
 
   useEffect(() => {
@@ -41,7 +42,7 @@ const App = (): JSX.Element => {
         >
           Server Health Ping
         </button>
-        <VideoPlayer1 />
+        <VideoPage />
       </header>
     </div>
   );

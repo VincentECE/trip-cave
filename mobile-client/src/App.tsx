@@ -55,6 +55,13 @@ const App = (): JSX.Element => {
         >
           Pause Video
         </button>
+        <button
+          onClick={() => {
+            mobileClientSocket.emit("playNextVideo");
+          }}
+        >
+          Play Next Video
+        </button>
         <p>
           Edit <code>src/App.tsx</code> and save to test HMR
         </p>
