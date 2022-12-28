@@ -35,4 +35,9 @@ export const mobileClientHandler = (io: Server, socket: Socket) => {
     console.log("going full screen");
     piClientSocket.emit("goFullScreen");
   });
+
+  mobileClientSocket.on("playNextVideo", () => {
+    console.log("switching video");
+    piClientSocket.emit("playNextVideo");
+  });
 };

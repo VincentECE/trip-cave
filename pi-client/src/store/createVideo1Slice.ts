@@ -1,15 +1,14 @@
 import { useRef } from "react";
 import create, { StateCreator } from "zustand";
-import coffeeVideo from "../assets/Coffee.mp4";
-import skyScrapersVideo from "../assets/Skyscrapers.mp4";
+import { UnifiedStoreType } from "./useStore";
 
-console.log("coffeeVideo: ", coffeeVideo);
+const coffeeVideo = "http://localhost:3001/coffee.mp4";
 
 export interface Video1Type {
   currentVideo1: string;
-  video1Hidden: boolean;
   video1Ref: any; //todo: strictly type this eventually...
   video1RefIsLoaded: boolean;
+  showPlayer1: boolean;
   setCurrentVideo1: (currentVideo: string) => void;
   setVideo1Ref: (videoRef: any) => void;
   playVideo1: () => void;
@@ -17,14 +16,16 @@ export interface Video1Type {
   goFullScreenOnElement: (elementId: string) => void;
 }
 
-export const createVideo1Slice: StateCreator<Video1Type, [], [], Video1Type> = (
-  set,
-  get
-) => ({
+export const createVideo1Slice: StateCreator<
+  UnifiedStoreType,
+  [],
+  [],
+  Video1Type
+> = (set, get) => ({
   currentVideo1: coffeeVideo,
-  video1Hidden: false,
   video1Ref: undefined,
   video1RefIsLoaded: false,
+  showPlayer1: true,
 
   setCurrentVideo1: (currentVideo1) => {
     set({ currentVideo1 });
