@@ -13,9 +13,7 @@ export const VideoPlayer2 = (): JSX.Element => {
     }));
 
   useEffect(() => {
-    if (!video2RefIsLoaded) {
-      setVideo2Ref(videoRef.current);
-    }
+    setVideo2Ref(videoRef.current);
   }, []);
 
   return (

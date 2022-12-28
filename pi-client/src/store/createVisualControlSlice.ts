@@ -4,6 +4,7 @@ import { UnifiedStoreType } from "./useStore";
 
 export interface VisualControlType {
   playNextVideo: () => void;
+  playVideo: () => void;
   pauseVideo: () => void;
 }
 
@@ -21,6 +22,16 @@ export const createVisualControlSlice: StateCreator<
       set({ showPlayer1: false, showPlayer2: true });
     } else {
       set({ showPlayer1: true, showPlayer2: false });
+    }
+  },
+
+  playVideo: () => {
+    const { playVideo1, playVideo2, showPlayer1, showPlayer2 } = get();
+
+    if (showPlayer1) {
+      playVideo1();
+    } else {
+      playVideo2();
     }
   },
 
