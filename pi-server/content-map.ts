@@ -1,20 +1,23 @@
 import { PI_CLIENT_HOST_IP, MOBILE_CLIENT_IP } from "./app-values";
 
-export interface contentInfo {
+export type ContentInfo = {
+  //TODO: RENAME THIS to "scene" TO MATCH THE MOBILE CLIENT TYPE
   title: string;
   imageUrl: string;
   videoUrl: string;
   tags: string[];
   categories: string[];
-}
+  sceneId: number;
+};
 
-export const contentMap: contentInfo[] = [
+export const contentMap: ContentInfo[] = [
   {
     title: "Expresso Machine",
     imageUrl: `${MOBILE_CLIENT_IP}Coffee.png`,
     videoUrl: `${PI_CLIENT_HOST_IP}Coffee.mp4`,
     tags: ["coffee", "relaxing", "homey"],
     categories: ["chill", "peaceful"],
+    sceneId: 0,
   },
   {
     title: "Dots Flying Through Space",
@@ -22,6 +25,7 @@ export const contentMap: contentInfo[] = [
     videoUrl: `${PI_CLIENT_HOST_IP}DotsBackground.mp4`,
     tags: ["flying", "trippy", "space"],
     categories: ["space", "trippy"],
+    sceneId: 1,
   },
   {
     title: "Neon Tunnel Flying through space",
@@ -29,6 +33,7 @@ export const contentMap: contentInfo[] = [
     videoUrl: `${PI_CLIENT_HOST_IP}Holy.mp4`,
     tags: ["flying", "trippy", "intense", "visuals"],
     categories: ["flying", "trip"],
+    sceneId: 2,
   },
   {
     title: "Flying through Skyscrapers",
@@ -36,5 +41,6 @@ export const contentMap: contentInfo[] = [
     videoUrl: `${PI_CLIENT_HOST_IP}Skyscrapers.mp4`,
     tags: ["flying", "city", "buildings"],
     categories: ["peaceful", "scene"],
+    sceneId: 3,
   },
 ];

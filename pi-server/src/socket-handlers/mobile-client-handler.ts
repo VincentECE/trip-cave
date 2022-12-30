@@ -42,11 +42,8 @@ export const mobileClientHandler = (io: Server, socket: Socket) => {
     piClientSocket.emit("playNextVideo");
   });
 
-  mobileClientSocket.on("getScenes", ({ page, limit }) => {
-    //todo: complete paginate functionality eventually
-    // const contentLength = contentMap.length - 1;
-
-    mobileClientSocket.emit("getScenes", contentMap);
-    //todo: getScenes should emit only to whoever called getScenes eventually..
+  mobileClientSocket.on("playNow", (sceneId) => {
+    console.log("playNow sceneId: ", sceneId);
+    piClientSocket.emit("playNow", contentMap[sceneId].videoUrl);
   });
 };

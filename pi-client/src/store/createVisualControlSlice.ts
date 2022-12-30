@@ -1,4 +1,3 @@
-import { useRef } from "react";
 import create, { StateCreator } from "zustand";
 import { UnifiedStoreType } from "./useStore";
 
@@ -6,6 +5,7 @@ export interface VisualControlType {
   playNextVideo: () => void;
   playVideo: () => void;
   pauseVideo: () => void;
+  playNow: (videoUrl: string) => void;
 }
 
 export const createVisualControlSlice: StateCreator<
@@ -43,5 +43,12 @@ export const createVisualControlSlice: StateCreator<
     } else {
       pauseVideo2();
     }
+  },
+
+  playNow: (videoUrl) => {
+    const { setCurrentVideo1, playVideo1 } = get();
+
+    setCurrentVideo1(videoUrl);
+    playVideo1();
   },
 });

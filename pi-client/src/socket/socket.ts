@@ -4,8 +4,14 @@ import { useStore } from "../store";
 // const serverUrl: string = process.env.REACT_APP_PI_URL || 'http://localhost:3001';
 const serverUrl: string = "http://localhost:3001";
 
-const { playVideo1, pauseVideo1, playNextVideo, pauseVideo, playVideo } =
-  useStore.getState();
+const {
+  playVideo1,
+  pauseVideo1,
+  playNextVideo,
+  pauseVideo,
+  playVideo,
+  playNow,
+} = useStore.getState();
 
 export let clientSocket: Socket;
 
@@ -47,5 +53,9 @@ export const establishConnection = () => {
   clientSocket.on("playNextVideo", () => {
     playNextVideo();
     //todo: playNextVideo will take in a string that's a URL to the next video
+  });
+
+  clientSocket.on("playNow", (videoUrl) => {
+    playNow(videoUrl);
   });
 };

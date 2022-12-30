@@ -1,17 +1,29 @@
-import axios from "axios";
+import axios, { ResponseType } from "axios";
 
-const url = "http://localhost:3001/";
+const url = "http://localhost:3002/scenes";
 
 type PlayVideoRequestPayload = {};
 
-type PlayVideoResponsePayload = {
+export type Scene = {
   title: string;
   imageUrl: string;
   videoUrl: string;
   tags: string[];
   categories: string[];
+  sceneId: number;
 };
 
-const playVideo = (payload: PlayVideoRequestPayload): void => {
-  //todo: this will eventually take in a string and may become a play/pause button
+export const getScenes = async (): Promise<Scene[]> => {
+  const options = {
+    url: url,
+    method: "GET",
+    headers: {
+      Accept: "application/json",
+      "Content-Type": "application/json;charset=UTF-8",
+    },
+  };
+
+  const { data } = await axios.request<Scene[]>(options);
+
+  return data;
 };
