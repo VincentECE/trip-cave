@@ -1,6 +1,7 @@
 import { v4 as uuid } from "uuid";
 import { Socket, Server } from "socket.io";
 import { piClientSocket } from "../socket-handlers";
+import { contentMap } from "../../content-map";
 
 export let mobileClientSocket: Socket;
 
@@ -39,5 +40,10 @@ export const mobileClientHandler = (io: Server, socket: Socket) => {
   mobileClientSocket.on("playNextVideo", () => {
     console.log("switching video");
     piClientSocket.emit("playNextVideo");
+  });
+
+  mobileClientSocket.on("playNow", (sceneId) => {
+    console.log("playNow sceneId: ", sceneId);
+    piClientSocket.emit("playNow", contentMap[sceneId].videoUrl);
   });
 };

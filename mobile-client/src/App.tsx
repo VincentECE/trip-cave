@@ -2,6 +2,7 @@ import { useState, useEffect } from "react";
 import { establishConnection, mobileClientSocket } from "./socket";
 import reactLogo from "./assets/react.svg";
 import "./App.css";
+import { HomePage } from "./features";
 
 const App = (): JSX.Element => {
   useEffect(() => {
@@ -62,6 +63,7 @@ const App = (): JSX.Element => {
         >
           Play Next Video
         </button>
+        <HomePage />
         <p>
           Edit <code>src/App.tsx</code> and save to test HMR
         </p>
