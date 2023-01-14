@@ -46,9 +46,19 @@ export const createVisualControlSlice: StateCreator<
   },
 
   playNow: (videoUrl) => {
-    const { setCurrentVideo1, playVideo1 } = get();
+    const { setCurrentVideo1, playVideo1, showPlayer1, setCurrentVideo2 } =
+      get();
 
-    setCurrentVideo1(videoUrl);
-    playVideo1();
+    console.log("playNow from createVisualControlSlice");
+
+    // setCurrentVideo1(videoUrl);
+    // playVideo1();
+
+    if (showPlayer1) {
+      // this is supposed to switch from player1 to player 2 with a transition effect to make the change not jarring
+      set({ showPlayer1: false, currentVideo2: videoUrl, showPlayer2: true });
+    } else {
+      set({ showPlayer2: false, currentVideo1: videoUrl, showPlayer1: true });
+    }
   },
 });
