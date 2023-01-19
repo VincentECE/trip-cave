@@ -46,9 +46,22 @@ export const createVisualControlSlice: StateCreator<
   },
 
   playNow: (videoUrl) => {
-    const { setCurrentVideo1, playVideo1 } = get();
+    const {
+      setCurrentVideo1,
+      playVideo1,
+      showPlayer1,
+      setCurrentVideo2,
+      playVideo2,
+      showPlayer2,
+    } = get();
 
-    setCurrentVideo1(videoUrl);
-    playVideo1();
+    if (showPlayer1) {
+      //todo: need to refactor this to smoothly transition by using playNextVideo from state
+      setCurrentVideo1(videoUrl);
+      playVideo1();
+    } else {
+      setCurrentVideo2(videoUrl);
+      playVideo2();
+    }
   },
 });

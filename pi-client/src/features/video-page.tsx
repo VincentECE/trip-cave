@@ -7,8 +7,11 @@ export const VideoPage = (): JSX.Element => {
     showPlayer2: state.showPlayer2,
   }));
 
+  const videoIdentifier = showPlayer1 ? "1" : "2";
+
   return (
     <div>
+      <h3>{`Player ${videoIdentifier}`}</h3>
       {showPlayer1 && <VideoPlayer1 />}
       {showPlayer2 && <VideoPlayer2 />}
     </div>

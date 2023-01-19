@@ -1,8 +1,9 @@
 import { io, Socket } from "socket.io-client";
 import { useStore } from "../store";
+import { PI_CLIENT_HOST_IP } from "../../../app-values";
 
 // const serverUrl: string = process.env.REACT_APP_PI_URL || 'http://localhost:3001';
-const serverUrl: string = "http://localhost:3001";
+// const serverUrl: string = "http://localhost:3001";
 
 const {
   playVideo1,
@@ -16,7 +17,7 @@ const {
 export let clientSocket: Socket;
 
 export const establishConnection = () => {
-  clientSocket = io(serverUrl);
+  clientSocket = io(PI_CLIENT_HOST_IP);
 
   clientSocket.on("connect_error", () => {
     console.log("couldn't connect to server");

@@ -1,6 +1,6 @@
 import express from "express";
 require("dotenv").config();
-import { PI_CLIENT_PORT, MOBILE_CLIENT_PORT } from "../app-values";
+import { PI_CLIENT_PORT, MOBILE_CLIENT_PORT } from "../../app-values";
 import { piClientHandler, mobileClientHandler } from "./socket-handlers";
 const piClientApp = express();
 const mobileClientApp = express();

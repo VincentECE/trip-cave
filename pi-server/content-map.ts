@@ -1,4 +1,4 @@
-import { PI_CLIENT_HOST_IP, MOBILE_CLIENT_IP } from "./app-values";
+import { PI_CLIENT_HOST_IP, MOBILE_CLIENT_IP } from "../app-values";
 
 export type ContentInfo = {
   //TODO: RENAME THIS to "scene" TO MATCH THE MOBILE CLIENT TYPE
