@@ -1,7 +1,9 @@
 import { useStore } from "../../store";
 import { useEffect, useRef } from "react";
-
-export const VideoPlayer2 = (): JSX.Element => {
+import { VideoPlayerContainer } from "./VideoPlayer.style";
+import { VideoPlayerProps } from "./type";
+export type VideoPlayer2Props = {} & VideoPlayerProps;
+export const VideoPlayer2 = (props: VideoPlayer2Props): JSX.Element => {
   const videoRef = useRef<HTMLVideoElement>();
   const { currentVideo2, video2RefIsLoaded, setVideo2Ref, playVideo2 } =
     useStore((state) => ({
@@ -17,7 +19,7 @@ export const VideoPlayer2 = (): JSX.Element => {
   }, []);
 
   return (
-    <div className="Video-Container" id="video2">
+    <VideoPlayerContainer hide={props.hide}>
       <button
         onClick={() => {
           playVideo2();
@@ -34,6 +36,6 @@ export const VideoPlayer2 = (): JSX.Element => {
         controls
         loop
       />
-    </div>
+    </VideoPlayerContainer>
   );
 };

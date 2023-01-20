@@ -8,12 +8,12 @@ export const VideoPage = (): JSX.Element => {
   }));
 
   const videoIdentifier = showPlayer1 ? "1" : "2";
-
+  console.log(videoIdentifier);
   return (
     <div>
       <h3>{`Player ${videoIdentifier}`}</h3>
-      {showPlayer1 && <VideoPlayer1 />}
-      {showPlayer2 && <VideoPlayer2 />}
+      <VideoPlayer1 hide={videoIdentifier === "1"} />
+      <VideoPlayer2 hide={videoIdentifier === "2"} />
     </div>
   );
 };
