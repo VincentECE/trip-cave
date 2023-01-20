@@ -16,8 +16,6 @@ export const createVisualControlSlice: StateCreator<
 > = (set, get) => ({
   playNextVideo: () => {
     const { showPlayer1, showPlayer2 } = get();
-
-    console.log("from playNextVideo state");
     if (showPlayer1) {
       set({ showPlayer1: false, showPlayer2: true });
     } else {
@@ -54,8 +52,6 @@ export const createVisualControlSlice: StateCreator<
       playVideo2,
       showPlayer2,
     } = get();
-
-    console.log("playNow hit");
 
     if (showPlayer1) {
       //todo: need to refactor this to smoothly transition by using playNextVideo from state

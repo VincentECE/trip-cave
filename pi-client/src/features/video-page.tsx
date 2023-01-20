@@ -8,7 +8,6 @@ export const VideoPage = (): JSX.Element => {
   }));
 
   const videoIdentifier = showPlayer1 ? "1" : "2";
-  console.log(videoIdentifier);
   return (
     <div>
       <h3>{`Player ${videoIdentifier}`}</h3>

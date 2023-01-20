@@ -33,7 +33,7 @@ export const VideoPlayer2 = (props: VideoPlayer2Props): JSX.Element => {
         src={currentVideo2}
         width="100%"
         autoPlay
-        controls
+        // controls
         loop
       />
     </VideoPlayerContainer>
