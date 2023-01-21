@@ -16,7 +16,7 @@ export const piClientHandler = (io: Server, socket: Socket) => {
   });
 
   piClientSocket.on("ServerHealthCheck", () => {
-    console.log("server health check received.. pinging back");
+    console.log("server health check received.. pinging back dawk");
     piClientSocket.emit("serverStatus", { status: "Im good" });
   });
 };

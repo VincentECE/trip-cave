@@ -18,7 +18,7 @@ export const mobileClientHandler = (io: Server, socket: Socket) => {
   });
 
   mobileClientSocket.on("ServerHealthCheck", () => {
-    console.log("server health check received.. pinging back");
+    console.log("server health check received.. pinging back dawk");
     mobileClientSocket.emit("serverStatus", { status: "Im good" });
   });
 
