@@ -2,6 +2,7 @@ import { v4 as uuid } from "uuid";
 import { Socket, Server } from "socket.io";
 import { piClientSocket } from "../socket-handlers";
 import { contentMap } from "../../content-map";
+import os from "os";
 
 export let mobileClientSocket: Socket;
 
@@ -19,6 +20,7 @@ export const mobileClientHandler = (io: Server, socket: Socket) => {
 
   mobileClientSocket.on("ServerHealthCheck", () => {
     console.log("server health check received.. pinging back dawk");
+    console.log("osInterfaces: ", os.networkInterfaces());
     mobileClientSocket.emit("serverStatus", { status: "Im good" });
   });
 
