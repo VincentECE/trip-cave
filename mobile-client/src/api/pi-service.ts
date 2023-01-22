@@ -1,6 +1,8 @@
 import axios, { ResponseType } from "axios";
+import { MOBILE_CLIENT_IP } from "../../../app-values";
 
-const url = "http://localhost:3002/scenes";
+// const url = "http://localhost:3002/scenes";
+const url = `${MOBILE_CLIENT_IP}scenes`;
 
 type PlayVideoRequestPayload = {};
 

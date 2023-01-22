@@ -7,6 +7,7 @@ import { useStore } from "./store";
 import { establishConnection, clientSocket } from "./socket";
 import { VideoPage } from "./features";
 import { QRCodeSVG } from "qrcode.react";
+import { MOBILE_CLIENT_IP } from "../../app-values";
 
 const App = (): JSX.Element => {
   const { goFullScreenOnElement, playVideo } = useStore((state) => ({
@@ -21,8 +22,6 @@ const App = (): JSX.Element => {
   return (
     <div className="App">
       <header className="App-header">
-        <img src={logo} id="poop" className="logo" alt="Vite logo" />
-        <QRCodeSVG value="http://192.168.86.34:5173" />
         <button
           onClick={() => {
             goFullScreenOnElement("video1");
@@ -44,11 +43,14 @@ const App = (): JSX.Element => {
         >
           Server Health Ping
         </button>
+        <QRCodeSVG value="http://192.168.86.34:5173" />
         <VideoPage />
       </header>
     </div>
   );
 };
+
+//todo: update the QR code URL whenever we're finally hosting everything on express
 
 export default App;
 
