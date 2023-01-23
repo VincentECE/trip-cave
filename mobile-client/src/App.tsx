@@ -1,8 +1,6 @@
-import { useState, useEffect } from "react";
+import { useEffect } from "react";
 import { establishConnection, mobileClientSocket } from "./socket";
-import reactLogo from "./assets/react.svg";
-import "./App.css";
-import { HomePage } from "./features";
+import { Main } from "./pages/Main";
 
 const App = (): JSX.Element => {
   useEffect(() => {
@@ -10,17 +8,8 @@ const App = (): JSX.Element => {
   });
 
   return (
-    <div className="App">
+    <div>
       <div>
-        <a href="https://vitejs.dev" target="_blank">
-          <img src="/vite.svg" className="logo" alt="Vite logo" />
-        </a>
-        <a href="https://reactjs.org" target="_blank">
-          <img src={reactLogo} className="logo react" alt="React logo" />
-        </a>
-      </div>
-      <h1>Vite + React Mobile Client</h1>
-      <div className="card">
         <button
           onClick={() => {
             mobileClientSocket.emit("goFullScreen");
@@ -63,14 +52,8 @@ const App = (): JSX.Element => {
         >
           Play Next Video
         </button>
-        <HomePage />
-        <p>
-          Edit <code>src/App.tsx</code> and save to test HMR
-        </p>
+        <Main />
       </div>
-      <p className="read-the-docs">
-        Click on the Vite and React logos to learn more
-      </p>
     </div>
   );
 };
