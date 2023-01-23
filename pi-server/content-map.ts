@@ -8,6 +8,7 @@ export type ContentInfo = {
   tags: string[];
   categories: string[];
   sceneId: number;
+  mood?: string[];
 };
 
 export const contentMap: ContentInfo[] = [
