@@ -8,10 +8,8 @@ import http from "http";
 const piClient_server = http.createServer(piClientApp);
 const mobileClient_server = http.createServer(mobileClientApp);
 import { Server, Socket } from "socket.io";
-import { Console } from "console";
 import { userRouter } from "./routes";
 import cors from "cors";
-import { contentMap } from "../content-map";
 // require("./db");
 // const PORT = process.env.PORT; //todo: add .env file
 // app.use(express.static(__dirname + "../mobile-client/dist"));

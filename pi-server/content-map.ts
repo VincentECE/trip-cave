@@ -44,4 +44,20 @@ export const contentMap: ContentInfo[] = [
     categories: ["peaceful", "scene"],
     sceneId: 3,
   },
+  {
+    title: "4k Aurora",
+    imageUrl: `${MOBILE_CLIENT_IP}Aurora.png`,
+    videoUrl: `${PI_CLIENT_HOST_IP}Aurora.mp4`,
+    tags: ["sky", "nature", "night"],
+    categories: ["peaceful", "scene"],
+    sceneId: 4,
+  },
+  {
+    title: "4k Magic Butterflies",
+    imageUrl: `${MOBILE_CLIENT_IP}MagicButterflies.png`,
+    videoUrl: `${PI_CLIENT_HOST_IP}MagicButterflies.mp4`,
+    tags: ["woods", "nature", "night"],
+    categories: ["peaceful", "scene"],
+    sceneId: 5,
+  },
 ];
