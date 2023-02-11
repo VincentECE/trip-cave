@@ -2,6 +2,7 @@ import express from "express";
 require("dotenv").config();
 import { PI_CLIENT_PORT, MOBILE_CLIENT_PORT } from "../../app-values";
 import { piClientHandler, mobileClientHandler } from "./socket-handlers";
+import path from "path";
 const piClientApp = express();
 const mobileClientApp = express();
 import http from "http";
@@ -12,13 +13,21 @@ import { userRouter } from "./routes";
 import cors from "cors";
 // require("./db");
 // const PORT = process.env.PORT; //todo: add .env file
-// app.use(express.static(__dirname + "../mobile-client/dist"));
 mobileClientApp.use(cors()); //todo: restrict origin
 mobileClientApp.use(express.static("public/thumbnail-images"));
 mobileClientApp.use(express.urlencoded({ extended: true }));
+mobileClientApp.use(
+  express.static(
+    path.join(
+      "C:/Users/vtran/Documents/SoftwareProjects/trip-cave/pi-server/dist/mobile-client-static-files"
+    )
+  )
+); //static file stuff
 mobileClientApp.use(userRouter);
 piClientApp.use(express.static("private/video-loops"));
 
+/* @@@@@@@@ Socket.io stuff @@@@@@@*/
+//sets up socket.io
 const piClient_io: Server = new Server(piClient_server, {
   cors: {
     origin: "*", //todo: strictly only allow the correct addresses
@@ -37,8 +46,6 @@ const mobileClient_io: Server = new Server(mobileClient_server, {
   pingTimeout: 5000,
 });
 
-// app.use("/", pageRoutes);
-
 //registers all socket connections
 const PiOnConnection = (socket: Socket) => {
   piClientHandler(piClient_io, socket);
@@ -54,6 +61,8 @@ const mobileClientConnection = (socket: Socket) => {
 
 piClient_io.on("connection", PiOnConnection);
 mobileClient_io.on("connection", mobileClientConnection);
+
+/* @@@@@@@@  END Socket.io stuff @@@@@@@*/
 
 piClient_server.listen(PI_CLIENT_PORT, () => {
   console.log(`piClient listening on :${PI_CLIENT_PORT}`);
