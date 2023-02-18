@@ -16,13 +16,26 @@ import cors from "cors";
 mobileClientApp.use(cors()); //todo: restrict origin
 mobileClientApp.use(express.static("public/thumbnail-images"));
 mobileClientApp.use(express.urlencoded({ extended: true }));
+// mobileClientApp.use(
+//   express.static(
+//     path.join(
+//       "C:/Users/vtran/Documents/SoftwareProjects/trip-cave/pi-server/dist/mobile-client-static-files"
+//     )
+//   )
+// ); //static file stuff
+
 mobileClientApp.use(
   express.static(
-    path.join(
-      "C:/Users/vtran/Documents/SoftwareProjects/trip-cave/pi-server/dist/mobile-client-static-files"
-    )
+    path.resolve(__dirname, "clients-static-files", "mobile-client")
   )
 ); //static file stuff
+
+const currentPath = path.resolve(
+  __dirname,
+  "clients-static-files",
+  "mobile-client"
+);
+console.log("current PATH>>>>>>>>>: ", currentPath);
 mobileClientApp.use(userRouter);
 piClientApp.use(express.static("private/video-loops"));
 
