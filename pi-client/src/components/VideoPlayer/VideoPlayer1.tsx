@@ -5,7 +5,7 @@ import { VideoPlayerProps } from "./type";
 
 export type VideoPage1Props = {} & VideoPlayerProps;
 export const VideoPlayer1 = (props: VideoPage1Props): JSX.Element => {
-  const videoRef = useRef<HTMLVideoElement>();
+  const videoRef = useRef<HTMLVideoElement>(null);
   const { currentVideo1, video1RefIsLoaded, setVideo1Ref, playVideo1 } =
     useStore((state) => ({
       currentVideo1: state.currentVideo1,

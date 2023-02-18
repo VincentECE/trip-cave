@@ -4,7 +4,7 @@ import { VideoPlayerContainer } from "./VideoPlayer.style";
 import { VideoPlayerProps } from "./type";
 export type VideoPlayer2Props = {} & VideoPlayerProps;
 export const VideoPlayer2 = (props: VideoPlayer2Props): JSX.Element => {
-  const videoRef = useRef<HTMLVideoElement>();
+  const videoRef = useRef<HTMLVideoElement>(null);
   const { currentVideo2, video2RefIsLoaded, setVideo2Ref, playVideo2 } =
     useStore((state) => ({
       currentVideo2: state.currentVideo2,

@@ -6,7 +6,7 @@ const coffeeVideo = "http://localhost:3001/coffee.mp4";
 
 export interface Video1Type {
   currentVideo1: string;
-  video1Ref: any; //todo: strictly type this eventually...
+  video1Ref?: React.RefObject<HTMLVideoElement> | null; //todo: strictly type this eventually...
   video1RefIsLoaded: boolean;
   showPlayer1: boolean;
   setCurrentVideo1: (currentVideo: string) => void;
@@ -23,7 +23,7 @@ export const createVideo1Slice: StateCreator<
   Video1Type
 > = (set, get) => ({
   currentVideo1: coffeeVideo,
-  video1Ref: undefined,
+  video1Ref: null,
   video1RefIsLoaded: false,
   showPlayer1: true,
 
@@ -41,7 +41,7 @@ export const createVideo1Slice: StateCreator<
 
     console.log("playVideo from state");
 
-    video1Ref.play();
+    video1Ref?.current?.play();
   },
 
   pauseVideo1: () => {
@@ -49,7 +49,7 @@ export const createVideo1Slice: StateCreator<
 
     console.log("pauseVideo from state");
 
-    video1Ref.pause();
+    video1Ref?.current?.pause();
   },
 
   goFullScreenOnElement: (elementId: string) => {
