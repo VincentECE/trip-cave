@@ -5,6 +5,7 @@ import react from "@vitejs/plugin-react";
 export default defineConfig({
   plugins: [react()],
   build: {
-    outDir: "../pi-server/src/clients-static-files/mobile-client",
+    outDir:
+      "../pi-server/dist/pi-server/src/clients-static-files/mobile-client",
   },
 });
