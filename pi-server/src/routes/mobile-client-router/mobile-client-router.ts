@@ -1,15 +1,14 @@
 import express from "express";
 import { contentMap } from "../../../content-map";
 import path from "path";
-export const userRouter = express.Router();
+export const mobileClientRouter = express.Router();
 // import controllers here
 
 /* === Routes === */
-userRouter.get("/", (req, res) => {
-  console.log("home route entered. This goes nowhere right now");
+mobileClientRouter.get("/", (req, res) => {
   res.sendFile(path.join(__dirname, "/", "index.html"));
 });
 
-userRouter.get("/scenes", (req, res) => {
+mobileClientRouter.get("/scenes", (req, res) => {
   res.send(contentMap);
 });
