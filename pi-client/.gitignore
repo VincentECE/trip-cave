@@ -11,6 +11,8 @@ node_modules
 dist
 dist-ssr
 *.local
+pi-server/private
+pi-server/public
 
 # Editor directories and files
 .vscode/*
