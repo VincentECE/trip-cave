@@ -1,6 +1,8 @@
 import express from "express";
 import { contentMap } from "../../../content-map";
 import path from "path";
+import { MOBILE_CLIENT_IP } from "../../../../app-values";
+
 export const mobileClientRouter = express.Router();
 // import controllers here
 
@@ -11,4 +13,8 @@ mobileClientRouter.get("/", (req, res) => {
 
 mobileClientRouter.get("/scenes", (req, res) => {
   res.send(contentMap);
+});
+
+mobileClientRouter.get("/shareLink", (req, res) => {
+  res.send(MOBILE_CLIENT_IP);
 });

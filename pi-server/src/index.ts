@@ -16,13 +16,6 @@ import cors from "cors";
 mobileClientApp.use(cors()); //todo: restrict origin
 mobileClientApp.use(express.static("public/thumbnail-images"));
 mobileClientApp.use(express.urlencoded({ extended: true }));
-// mobileClientApp.use(
-//   express.static(
-//     path.join(
-//       "C:/Users/vtran/Documents/SoftwareProjects/trip-cave/pi-server/dist/mobile-client-static-files"
-//     )
-//   )
-// ); //static file stuff
 
 mobileClientApp.use(
   express.static(
@@ -72,22 +65,20 @@ piClient_io.on("connection", PiOnConnection);
 mobileClient_io.on("connection", mobileClientConnection);
 
 /* @@@@@@@@  END Socket.io stuff @@@@@@@*/
+try {
+  piClient_server.listen(PI_CLIENT_PORT, () => {
+    console.log(`piClient listening on :${PI_CLIENT_PORT}`);
+  });
+} catch (err) {
+  console.error("Unable to start pi-client: ", err);
+  //todo: error logging here
+}
 
-piClient_server.listen(PI_CLIENT_PORT, () => {
-  console.log(`piClient listening on :${PI_CLIENT_PORT}`);
-});
-
-mobileClient_server.listen(MOBILE_CLIENT_PORT, () => {
-  console.log(`mobileClient listening on ${MOBILE_CLIENT_PORT}`);
-});
-
-// mobileClientApp.listen(
-//   3003,
-//   "192.168.86.80",
-//   () => {
-//     console.log("jawn:");
-//   },
-//   function () {
-//     console.log(`listening on port ${3003}`);
-//   }
-// );
+try {
+  mobileClient_server.listen(MOBILE_CLIENT_PORT, () => {
+    console.log(`mobileClient listening on ${MOBILE_CLIENT_PORT}`);
+  });
+} catch (err) {
+  console.error("unable to start mobile-client: ", err);
+  //todo: error logging here
+}
