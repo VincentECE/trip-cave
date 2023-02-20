@@ -66,7 +66,7 @@ mobileClient_io.on("connection", mobileClientConnection);
 
 /* @@@@@@@@  END Socket.io stuff @@@@@@@*/
 try {
-  piClient_server.listen(PI_CLIENT_PORT, () => {
+  piClient_server.listen(PI_CLIENT_PORT, "127.0.0.1", () => {
     console.log(`piClient listening on :${PI_CLIENT_PORT}`);
   });
 } catch (err) {

@@ -1,6 +1,4 @@
-# trip-cave
-
-## Running the application
+# Running the application
 
 Download picture / video assets from google drive and put them in the correct folders
 
@@ -17,6 +15,14 @@ Download picture / video assets from google drive and put them in the correct fo
 - vite should be providing a link in the terminals to access the clients
 
 ### Running the application from the pi-server only (production)
+
+### This is the current way of building for prod
+
+- **cd pi-server**
+- **yarn build**
+- **yarn start**
+
+### This is what the above command does when building for prod
 
 Build the files from pi-server
 
