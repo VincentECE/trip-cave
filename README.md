@@ -43,3 +43,8 @@ Start the pi-server
 
 - **cd pi-server**
 - **yarn start**
+
+# Running the application on the pi
+
+- make sure the pi-server directory has all the build files in there from all 3 directories
+- run the startup-script from pi-server -> dist
