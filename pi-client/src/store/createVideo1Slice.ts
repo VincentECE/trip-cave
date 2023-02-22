@@ -13,7 +13,7 @@ export interface Video1Type {
   setVideo1Ref: (videoRef: any) => void;
   playVideo1: () => void;
   pauseVideo1: () => void;
-  goFullScreenOnElement: (elementId: string) => void;
+  goFullScreenVideo1: (elementId: string) => void;
 }
 
 export const createVideo1Slice: StateCreator<
@@ -52,7 +52,7 @@ export const createVideo1Slice: StateCreator<
     video1Ref?.current?.pause();
   },
 
-  goFullScreenOnElement: (elementId: string) => {
+  goFullScreenVideo1: (elementId: string) => {
     console.log("should be going fullscreen");
     document.getElementById(elementId)?.requestFullscreen();
   },

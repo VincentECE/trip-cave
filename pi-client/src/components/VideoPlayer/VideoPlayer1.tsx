@@ -29,7 +29,7 @@ export const VideoPlayer1 = (props: VideoPage1Props): JSX.Element => {
       </button>
       <video
         ref={videoRef}
-        id="video-window"
+        id="video1"
         src={currentVideo1}
         width="100%"
         autoPlay

@@ -15,7 +15,7 @@ export interface Video2Type {
   setVideo2Ref: (videoRef: any) => void;
   playVideo2: () => void;
   pauseVideo2: () => void;
-  goFullScreenOnElement: (elementId: string) => void;
+  goFullScreenVideo2: (elementId: string) => void;
 }
 
 export const createVideo2Slice: StateCreator<
@@ -54,8 +54,10 @@ export const createVideo2Slice: StateCreator<
     video2Ref?.current?.pause();
   },
 
-  goFullScreenOnElement: (elementId: string) => {
+  goFullScreenVideo2: (elementId: string) => {
     console.log("should be going fullscreen");
     document.getElementById(elementId)?.requestFullscreen();
+    //there doesn't actully need both a goFullScreenVideo2 and goFullScreenVideo1
+    //because it's really just looking for an elementId
   },
 });
