@@ -48,3 +48,8 @@ Start the pi-server
 
 - make sure the pi-server directory has all the build files in there from all 3 directories
 - run the startup-script from pi-server -> dist
+
+## IMPORTANT! When running prod on the PI
+
+- The folders that contain the video and image content (private and public folders) need to be in dist/pi-server/src
+- The node modules need to be on the same level as the dist folder
