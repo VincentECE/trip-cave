@@ -1,13 +1,9 @@
 import { Container } from "./MobileBottomTabBar.style";
 
 export type MobileBottomTabBarProps = {
-  tabList: any[];
+  children: JSX.Element;
 };
 
-export const MobileBottomTabBar = ({ tabList }: MobileBottomTabBarProps) => (
-  <Container>
-    {tabList.map((tab) => (
-      <></>
-    ))}
-  </Container>
+export const MobileBottomTabBar = ({ children }: MobileBottomTabBarProps) => (
+  <Container>{children}</Container>
 );
