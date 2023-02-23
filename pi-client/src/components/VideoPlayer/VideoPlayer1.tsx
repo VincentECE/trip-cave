@@ -27,15 +27,17 @@ export const VideoPlayer1 = (props: VideoPage1Props): JSX.Element => {
       >
         Play
       </button>
-      <video
-        ref={videoRef}
-        id="video1"
-        src={currentVideo1}
-        width="100%"
-        autoPlay
-        // controls
-        loop
-      />
+      <div id="video1-div">
+        <video
+          ref={videoRef}
+          id="video1"
+          src={currentVideo1}
+          width="100%"
+          autoPlay
+          // controls
+          loop
+        />
+      </div>
     </VideoPlayerContainer>
   );
 };

@@ -56,7 +56,7 @@ export const createVideo2Slice: StateCreator<
 
   goFullScreenVideo2: (elementId: string) => {
     console.log("should be going fullscreen");
-    document.getElementById(elementId)?.requestFullscreen();
+    document.getElementById("video2-div")?.requestFullscreen();
     //there doesn't actully need both a goFullScreenVideo2 and goFullScreenVideo1
     //because it's really just looking for an elementId
   },

@@ -54,6 +54,6 @@ export const createVideo1Slice: StateCreator<
 
   goFullScreenVideo1: (elementId: string) => {
     console.log("should be going fullscreen");
-    document.getElementById(elementId)?.requestFullscreen();
+    document.getElementById("video1-div")?.requestFullscreen();
   },
 });
