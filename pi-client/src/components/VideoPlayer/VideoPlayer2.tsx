@@ -27,15 +27,17 @@ export const VideoPlayer2 = (props: VideoPlayer2Props): JSX.Element => {
       >
         Play
       </button>
-      <video
-        ref={videoRef}
-        id="video2"
-        src={currentVideo2}
-        width="100%"
-        autoPlay
-        // controls
-        loop
-      />
+      <div id="video2-div">
+        <video
+          ref={videoRef}
+          id="video2"
+          src={currentVideo2}
+          width="100%"
+          autoPlay
+          // controls
+          loop
+        />
+      </div>
     </VideoPlayerContainer>
   );
 };
