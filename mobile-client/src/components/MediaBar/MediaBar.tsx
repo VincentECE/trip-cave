@@ -1,5 +1,5 @@
 import { useState } from "react";
-import { ControlContainer, IconContainer } from "./ControlBar.style";
+import { ControlContainer, IconContainer } from "./MediaBar.style";
 import {
   AiOutlineForward,
   AiOutlineBackward,
@@ -12,7 +12,7 @@ export type ControlBarProps = {
   onClick?: (isPlaying: boolean) => void;
 };
 
-export const ControlBar = (props: ControlBarProps): JSX.Element => {
+export const MediaBar = (props: ControlBarProps): JSX.Element => {
   const [isPlaying, setIsPlaying] = useState<boolean>(false);
 
   const handleSwitch = () => {

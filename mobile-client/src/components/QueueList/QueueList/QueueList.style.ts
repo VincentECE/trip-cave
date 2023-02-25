@@ -8,3 +8,15 @@ export const Container = styled.div`
   min-height: 50px;
 
 `
+
+export const IconContainer = styled.div`
+  height: 40px;
+  width: 40px;
+  ${flex.default('column')}
+
+  svg {
+    height: 36px;
+    width: 36px;  
+  }
+`
+

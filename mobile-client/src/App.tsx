@@ -4,7 +4,7 @@ import { Main } from "./pages/Main";
 import styled from "styled-components";
 import { flex } from "./style/flex";
 import { MobileBottomTabBar } from "./components/BottomTabBar/MobileBottomTabBar";
-import { ControlBar } from "./components/ControlBar";
+import { MediaBar } from "./components/MediaBar";
 import { QueueList } from "./components/QueueList/QueueList";
 
 const AppContainer = styled.div`
@@ -25,10 +25,7 @@ const App = (): JSX.Element => {
     <AppContainer>
       <Main />
       <MobileBottomTabBar>
-        <>
-          <ControlBar />
-          <QueueList />
-        </>
+        <MediaBar />
       </MobileBottomTabBar>
     </AppContainer>
   );
