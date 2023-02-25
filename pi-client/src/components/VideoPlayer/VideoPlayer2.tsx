@@ -4,7 +4,7 @@ import { VideoPlayerContainer } from "./VideoPlayer.style";
 import { VideoPlayerProps } from "./type";
 export type VideoPlayer2Props = {} & VideoPlayerProps;
 export const VideoPlayer2 = (props: VideoPlayer2Props): JSX.Element => {
-  const videoRef = useRef<HTMLVideoElement>();
+  const videoRef = useRef<HTMLVideoElement>(null);
   const { currentVideo2, video2RefIsLoaded, setVideo2Ref, playVideo2 } =
     useStore((state) => ({
       currentVideo2: state.currentVideo2,
@@ -27,15 +27,17 @@ export const VideoPlayer2 = (props: VideoPlayer2Props): JSX.Element => {
       >
         Play
       </button>
-      <video
-        ref={videoRef}
-        id="video-window"
-        src={currentVideo2}
-        width="100%"
-        autoPlay
-        // controls
-        loop
-      />
+      <div id="video2-div">
+        <video
+          ref={videoRef}
+          id="video2"
+          src={currentVideo2}
+          width="100%"
+          autoPlay
+          // controls
+          loop
+        />
+      </div>
     </VideoPlayerContainer>
   );
 };

@@ -8,14 +8,14 @@ const dotsVideo = "http://localhost:3001/DotsBackground.mp4";
 
 export interface Video2Type {
   currentVideo2: string;
-  video2Ref: any; //todo: strictly type this eventually...
+  video2Ref?: React.RefObject<HTMLVideoElement> | null; //todo: strictly type this eventually...
   video2RefIsLoaded: boolean;
   showPlayer2: boolean;
   setCurrentVideo2: (currentVideo: string) => void;
   setVideo2Ref: (videoRef: any) => void;
   playVideo2: () => void;
   pauseVideo2: () => void;
-  goFullScreenOnElement: (elementId: string) => void;
+  goFullScreenVideo2: (elementId: string) => void;
 }
 
 export const createVideo2Slice: StateCreator<
@@ -25,7 +25,7 @@ export const createVideo2Slice: StateCreator<
   Video2Type
 > = (set, get) => ({
   currentVideo2: dotsVideo,
-  video2Ref: undefined,
+  video2Ref: null,
   video2RefIsLoaded: false,
   showPlayer2: false,
 
@@ -43,7 +43,7 @@ export const createVideo2Slice: StateCreator<
 
     console.log("playVideo from state");
 
-    video2Ref.play();
+    video2Ref?.current?.play();
   },
 
   pauseVideo2: () => {
@@ -51,11 +51,13 @@ export const createVideo2Slice: StateCreator<
 
     console.log("pauseVideo2 from state");
 
-    video2Ref.pause();
+    video2Ref?.current?.pause();
   },
 
-  goFullScreenOnElement: (elementId: string) => {
+  goFullScreenVideo2: (elementId: string) => {
     console.log("should be going fullscreen");
-    document.getElementById(elementId)?.requestFullscreen();
+    document.getElementById("video2-div")?.requestFullscreen();
+    //there doesn't actully need both a goFullScreenVideo2 and goFullScreenVideo1
+    //because it's really just looking for an elementId
   },
 });

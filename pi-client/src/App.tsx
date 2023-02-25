@@ -10,11 +10,6 @@ import { QRCodeSVG } from "qrcode.react";
 import { MOBILE_CLIENT_IP } from "../../app-values";
 
 const App = (): JSX.Element => {
-  const { goFullScreenOnElement, playVideo } = useStore((state) => ({
-    goFullScreenOnElement: state.goFullScreenOnElement,
-    playVideo: state.playVideo1,
-  }));
-
   useEffect(() => {
     establishConnection();
   });
@@ -22,13 +17,6 @@ const App = (): JSX.Element => {
   return (
     <div className="App">
       <header className="App-header">
-        <button
-          onClick={() => {
-            goFullScreenOnElement("video1");
-          }}
-        >
-          FullScreen
-        </button>
         <button
           onClick={() => {
             establishConnection();
@@ -43,7 +31,7 @@ const App = (): JSX.Element => {
         >
           Server Health Ping
         </button>
-        <QRCodeSVG value="http://192.168.86.34:5173" />
+        <QRCodeSVG value={MOBILE_CLIENT_IP} />
         <VideoPage />
       </header>
     </div>

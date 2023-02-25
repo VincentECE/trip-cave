@@ -20,8 +20,8 @@
     "uuid": "^9.0.0"
   },
   "scripts": {
-    "build": "npx tsc",
-    "start": "node dist/src/index.js",
+    "build": "npx tsc && cd .. && cd mobile-client && yarn build && cd .. && cd pi-client && yarn build",
+    "start": "node dist/pi-server/src/index.js",
     "dev": "concurrently \"npx tsc --watch\" \"nodemon -q dist/pi-server/src/index.js\""
   }
 }
