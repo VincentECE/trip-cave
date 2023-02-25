@@ -18,3 +18,9 @@ export const device = {
   desktop: `@media (min-width: ${size.desktop})`,
   desktopL: `@media (min-width: ${size.desktop})`
 };
+
+type Device = keyof typeof device;
+
+const respondTo = (deviceName: Device) => {
+  return device[deviceName];
+};
