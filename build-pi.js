@@ -3,6 +3,10 @@ import os from "os";
 
 // Define the commands to be executed
 
+/*
+  This script builds all the files needed to be run on the raspberry pi in the production-build directory
+**/
+
 let commands;
 
 if (os.platform() === "win32") {
@@ -20,7 +24,7 @@ if (os.platform() === "win32") {
   ];
 } else {
   // Current OS is Unix (Linux, macOS, etc.)
-  console.log("Unix detected");
+  console.log("Unix detected (untested)");
   commands = [
     "cd pi-server && npx tsc",
     "cd mobile-client && yarn build",
@@ -49,9 +53,6 @@ for (const command of commands) {
     console.log(`child process exited with code ${code}`);
   });
 }
-
-//the idea of making this script is to run it to start the server every time the RBPi reboots
-// This can be run from the dist folder because that's where this typescript is transpiled
 
 /*
 
