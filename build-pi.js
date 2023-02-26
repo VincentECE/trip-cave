@@ -1,9 +1,3 @@
-/*
-    This script builds all the files and mvoes them to the root directory
-    ready to be ran on the raspberry pi. (as long as host ip addresses
-        are set right in app-values)
-*/
-
 import { spawn } from "child_process";
 import os from "os";
 
@@ -16,21 +10,25 @@ if (os.platform() === "win32") {
   console.log("Windows detected");
 
   commands = [
-    "taskkill /f /im chrome.exe",
-    "cd ..",
-    "cd pi-server",
-    "yarn start",
-    "start chrome",
+    "cd pi-server && npx tsc",
+    "cd mobile-client && yarn build",
+    "cd pi-client && yarn build",
+    "cd pi-server && cp -r dist ../production-build",
+    "cd pi-server && cp -r private ../production-build/dist/pi-server/src",
+    "cd pi-server && cp -r public ../production-build/dist/pi-server/src",
+    "cd pi-server && cp -r node_modules ../production-build",
   ];
 } else {
   // Current OS is Unix (Linux, macOS, etc.)
   console.log("Unix detected");
   commands = [
-    "pkill chrome",
-    "cd ..",
-    "cd pi-server",
-    "yarn start",
-    "start chrome",
+    "cd pi-server && npx tsc",
+    "cd mobile-client && yarn build",
+    "cd pi-client && yarn build",
+    "cd pi-server && mv -r dist ../production-build",
+    "cd pi-server && mv -r private ../production-build/dist/pi-server/src",
+    "cd pi-server && mv -r public ../production-build/dist/pi-server/src",
+    "cd pi-server && mv -r node_modules ../production-build",
   ];
 }
 
