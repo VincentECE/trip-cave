@@ -18,9 +18,9 @@ Download picture / video assets from google drive and put them in the correct fo
 
 ### This is the current way of building for prod
 
-- **cd pi-server**
-- **yarn build**
-- **yarn start**
+From the root trip-caves directory, run
+
+- **node build-pi.js**
 
 ### This is what the above command does when building for prod
 
