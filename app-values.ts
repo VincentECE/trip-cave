@@ -8,6 +8,9 @@ export const MOBILE_CLIENT_PORT = 3002;
 // export const CURRENT_HOST_IP = "http://192.168.86.34:"; //todo: since we aren't serving the files through express, this needs to change to match whever vite is hosting the clients
 export const CURRENT_HOST_IP = "http://localhost:";
 
+//pi IPV4: 192.168.86.234
+//pi IPV6: fe80::362a:bd52:ae34:cf90
+
 /************************/
 
 export const PI_CLIENT_HOST_IP = `${"http://localhost:" + PI_CLIENT_PORT}/`;
