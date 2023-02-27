@@ -14,6 +14,7 @@ if (os.platform() === "win32") {
   console.log("Windows detected");
 
   commands = [
+    "rmdir /s /q production-build", //deletes all contents inside the production-build directory
     "cd pi-server && npx tsc",
     "cd mobile-client && yarn build",
     "cd pi-client && yarn build",
@@ -21,10 +22,12 @@ if (os.platform() === "win32") {
     "cd pi-server && cp -r private ../production-build/dist/pi-server/src",
     "cd pi-server && cp -r public ../production-build/dist/pi-server/src",
     "cd pi-server && cp -r node_modules ../production-build",
+    "cd production-build && tar -czvf dist.zip dist",
+    "cd production-build && tar -czvf node_modules.zip node_modules",
   ];
 } else {
   // Current OS is Unix (Linux, macOS, etc.)
-  console.log("Unix detected (untested)");
+  console.log("Unix detected (not written for unix yet)");
   commands = [
     "cd pi-server && npx tsc",
     "cd mobile-client && yarn build",
@@ -38,21 +41,44 @@ if (os.platform() === "win32") {
 
 //in windows, the first command should be replaced with "taskkill /f /im chrome.exe" because pkill is only for unix based systems
 // Spawn a child process for each command
-for (const command of commands) {
-  const child = spawn(command, { shell: true });
-  child.stdout.on("data", (data) => {
-    console.log(`stdout: ${data}`);
-  });
-  child.stderr.on("data", (data) => {
-    console.error(`stderr: ${data}`);
-  });
-  child.on("error", (error) => {
-    console.error(`error: ${error.message}`);
-  });
-  child.on("close", (code) => {
-    console.log(`child process exited with code ${code}`);
-  });
+const commandsLength = commands.length;
+let currentCommand = 1;
+let failed = 0;
+
+async function runCommands() {
+  for (const command of commands) {
+    const child = spawn(command, { shell: true });
+    await new Promise((resolve, reject) => {
+      child.stdout.on("data", (data) => {
+        console.log(`stdout: ${data}`);
+      });
+      child.stderr.on("data", (data) => {
+        console.error(`stderr: ${data}`);
+      });
+      child.on("error", (error) => {
+        console.error(`error: ${error.message}`);
+        failed++;
+        reject(error);
+      });
+      child.on("close", (code) => {
+        console.log(`child process exited with code ${code}`);
+        resolve();
+      });
+    });
+
+    console.log(
+      `Ran ${currentCommand}/${commandsLength} commands. Failed ${failed} commands `
+    );
+
+    if (currentCommand === commandsLength) {
+      console.log("DONE! The zip files are ready to be tested on the pi");
+    }
+
+    currentCommand++;
+  }
 }
+
+runCommands();
 
 /*
 
