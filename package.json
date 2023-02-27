@@ -1,0 +1,7 @@
+{
+  "name": "trip-cave-main",
+  "version": "1.0.0",
+  "main": "index.js",
+  "license": "Proprietary software license",
+  "type" : "module"
+}

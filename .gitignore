@@ -106,3 +106,5 @@ dist
 .pi-server/private
 
 .pi-server/public
+
+.production-build
