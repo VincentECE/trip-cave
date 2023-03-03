@@ -20,21 +20,14 @@ export const VideoPlayer1 = (props: VideoPage1Props): JSX.Element => {
 
   return (
     <VideoPlayerContainer hide={props.hide}>
-      <button
-        onClick={() => {
-          playVideo1();
-        }}
-      >
-        Play
-      </button>
       <div id="video1-div">
         <video
           ref={videoRef}
           id="video1"
           src={currentVideo1}
-          width="100%"
+          width="1120px"
+          height="630px"
           autoPlay
-          // controls
           loop
         />
       </div>

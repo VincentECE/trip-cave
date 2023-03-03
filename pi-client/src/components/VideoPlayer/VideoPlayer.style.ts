@@ -16,9 +16,19 @@ const transitionOut = keyframes`
     }
 `;
 
+// export const VideoPlayerContainer = styled.div<{ hide: boolean }>`
+//   animation: ${(props) => (props.hide ? transitionIn : transitionOut)} 10s
+//     forwards;
+//   visibility: ${(props) => (!props.hide ? "hidden" : "visible")} forwards;
+//   display: flex;
+//   justify-content: center;
+//   align-items: center;
+// `;
+
+
 export const VideoPlayerContainer = styled.div<{ hide: boolean }>`
-  animation: ${(props) => (props.hide ? transitionIn : transitionOut)} 10s
-    forwards;
-  visibility: ${(props) => (!props.hide ? "hidden" : "visible")} forwards;
-  position: absolute;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
 `;
