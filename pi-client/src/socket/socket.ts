@@ -6,15 +6,10 @@ import { PI_CLIENT_HOST_IP } from "../../../app-values";
 // const serverUrl: string = "http://localhost:3001";
 
 const {
-  playVideo1,
-  pauseVideo1,
-  playNextVideo,
   pauseVideo,
   playVideo,
-  playNow,
-  goFullScreenVideo1,
-  goFullScreenVideo2,
-  showPlayer1,
+  goFullScreen,
+  playNextVideo
 } = useStore.getState();
 
 export let clientSocket: Socket;
@@ -52,20 +47,14 @@ export const establishConnection = () => {
 
   clientSocket.on("goFullScreen", () => {
     console.log("I should be fullScreen...");
-    if (showPlayer1) {
-      goFullScreenVideo1("video1");
-    } else {
-      goFullScreenVideo2("video2");
-    }
-    //todo: have some fullscreen logic here
+     goFullScreen();
   });
 
-  clientSocket.on("playNextVideo", () => {
-    playNextVideo();
-    //todo: playNextVideo will take in a string that's a URL to the next video
+  clientSocket.on("playNextVideo", (videoUrl?: string) => {
+    playNextVideo(videoUrl);
   });
 
-  clientSocket.on("playNow", (videoUrl) => {
-    playNow(videoUrl);
+  clientSocket.on("playNow", () => {
+    playVideo();
   });
 };

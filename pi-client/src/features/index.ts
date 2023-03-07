@@ -1,1 +1,1 @@
-export * from "./video-page";
+export * from "./Video"

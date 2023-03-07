@@ -1,4 +1,4 @@
-import styled, { keyframes } from "styled-components";
+import styled, { css, keyframes } from "styled-components";
 
 const transitionIn = keyframes`
     from {
@@ -16,7 +16,8 @@ const transitionOut = keyframes`
     }
 `;
 
-
+const animationTransitionIn = css`animation: ${transitionIn} 10s forwards`
+const animationTransitionOut = css`animation: ${transitionOut} 10s forwards`
 
 export const VideoPlayerContainer = styled.div`
   display: flex;
@@ -30,7 +31,6 @@ export const Video = styled.video<{ hide: boolean }>`
   justify-content: center;
   align-items: center;
   &:fullscreen {
-    animation: ${(props) => (props.hide ? transitionIn : transitionOut)} 10s forwards;
-    visibility: ${(props) => (!props.hide ? "hidden" : "visible")} forwards;
+    ${(props) => props.hide ?  animationTransitionIn : animationTransitionOut}
   }
 `;
