@@ -3,7 +3,8 @@ import { mobileClientSocket } from "../socket";
 import { UnifiedStoreType } from "./useStore";
 
 export interface VisualControlType {
-  playNow: (sceneId: number) => void;
+  playNow: () => void;
+  playNextVideo: (video: string) => void;
 }
 
 export const createVisualControlSlice: StateCreator<
@@ -12,7 +13,10 @@ export const createVisualControlSlice: StateCreator<
   [],
   VisualControlType
 > = (set, get) => ({
-  playNow: (sceneId) => {
-    mobileClientSocket.emit("playNow", sceneId);
+  playNow: () => {
+    mobileClientSocket.emit("playNow");
   },
+  playNextVideo: (video: string) => {
+    mobileClientSocket.emit("playNextVideo", video);
+  }
 });

@@ -22,7 +22,6 @@ export const createVideoSlice: StateCreator<
   [],
   VideoType
 > = (set, get) => {
-  const skeet = get();
   return {
     currentVideo: DEFAULT_VIDEO,
     videoRef: null,
@@ -35,15 +34,15 @@ export const createVideoSlice: StateCreator<
       set({ videoRef, videoRefIsLoaded: true });      
     },
     playVideo: () => {     
-      skeet.videoRef?.current?.play();
+      get().videoRef?.current?.play();
     },
     pauseVideo: () => {
-      skeet.videoRef?.current?.pause();
+      get().videoRef?.current?.pause();
     },
     playNextVideo: (video?: string) => {
-      video && skeet.setCurrentVideo(video); 
-      skeet.pauseVideo();
-      skeet.videoRef?.current?.load();
+      video && get().setCurrentVideo(video); 
+      get().pauseVideo();
+      get().videoRef?.current?.load();
     },
     goFullScreen: () => {
       document.getElementById("video1-div")?.requestFullscreen();

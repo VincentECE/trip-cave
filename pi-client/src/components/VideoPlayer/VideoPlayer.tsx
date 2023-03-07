@@ -21,9 +21,8 @@ export const VideoPlayer = ({
         controls
         autoPlay
         loop
-      >
-        <source src={currentVideo} type="video/mp4" />
-      </Video>
+        src={currentVideo}
+      />
     </div>
   </VideoPlayerContainer>
 );

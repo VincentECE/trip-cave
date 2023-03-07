@@ -14,7 +14,7 @@ export const Video = (): JSX.Element => {
   );
 
   useEffect(() => {
-    setVideoRef(videoRef.current);
+    setVideoRef(videoRef);
   }, []);
 
   return <VideoPlayer currentVideo={currentVideo} videoRef={videoRef} />;

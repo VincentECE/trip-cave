@@ -44,6 +44,8 @@ export const mobileClientHandler = (io: Server, socket: Socket) => {
     piClientSocket.emit("playNextVideo");
   });
 
+
+  // playSelectedVideo 
   mobileClientSocket.on("playNow", (sceneId) => {
     console.log("playNow sceneId: ", sceneId);
     piClientSocket.emit("playNow", contentMap[sceneId].videoUrl);

@@ -51,6 +51,7 @@ export const establishConnection = () => {
   });
 
   clientSocket.on("playNextVideo", (videoUrl?: string) => {
+    console.log(videoUrl);
     playNextVideo(videoUrl);
   });
 
