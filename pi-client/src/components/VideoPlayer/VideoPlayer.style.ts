@@ -16,19 +16,21 @@ const transitionOut = keyframes`
     }
 `;
 
-// export const VideoPlayerContainer = styled.div<{ hide: boolean }>`
-//   animation: ${(props) => (props.hide ? transitionIn : transitionOut)} 10s
-//     forwards;
-//   visibility: ${(props) => (!props.hide ? "hidden" : "visible")} forwards;
-//   display: flex;
-//   justify-content: center;
-//   align-items: center;
-// `;
 
 
-export const VideoPlayerContainer = styled.div<{ hide: boolean }>`
+export const VideoPlayerContainer = styled.div`
   display: flex;
   justify-content: center;
   align-items: center;
   flex-direction: column;
+`;
+
+export const Video = styled.video<{ hide: boolean }>`
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  &:fullscreen {
+    animation: ${(props) => (props.hide ? transitionIn : transitionOut)} 10s forwards;
+    visibility: ${(props) => (!props.hide ? "hidden" : "visible")} forwards;
+  }
 `;

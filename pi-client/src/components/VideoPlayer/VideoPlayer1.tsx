@@ -1,6 +1,6 @@
 import { useStore } from "../../store";
 import { useEffect, useRef } from "react";
-import { VideoPlayerContainer } from "./VideoPlayer.style";
+import { Video, VideoPlayerContainer } from "./VideoPlayer.style";
 import { VideoPlayerProps } from "./type";
 
 export type VideoPage1Props = {} & VideoPlayerProps;
@@ -19,17 +19,20 @@ export const VideoPlayer1 = (props: VideoPage1Props): JSX.Element => {
   }, []);
 
   return (
-    <VideoPlayerContainer hide={props.hide}>
+    <VideoPlayerContainer>
       <div id="video1-div">
-        <video
+        <Video
+          hide={props.hide}
           ref={videoRef}
           id="video1"
-          src={currentVideo1}
-          width="1120px"
-          height="630px"
+          width="100%"
+          controls
           autoPlay
           loop
-        />
+        >
+          <h2>hello</h2>
+          <source src={currentVideo1} type="video/mp4" />
+        </Video>
       </div>
     </VideoPlayerContainer>
   );

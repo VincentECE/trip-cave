@@ -26,12 +26,13 @@ export const VideoPlayer2 = (props: VideoPlayer2Props): JSX.Element => {
           ref={videoRef}
           id="video2"
           src={currentVideo2}
-          width="1120px"
-          height="630px"
+          width="100%"
           autoPlay
           controls
           loop
-        />
+        >
+          <source src={currentVideo2} type="video/mp4" />
+        </video>
       </div>
     </VideoPlayerContainer>
   );
