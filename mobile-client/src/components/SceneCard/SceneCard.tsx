@@ -6,13 +6,13 @@ import { Container, Img } from "./SceneCard.style";
 type SceneCardProps = { scene: Scene };
 
 export const SceneCard = (props: SceneCardProps): JSX.Element => {
-  const playNextVideo = useStore((state) => state.playNextVideo);
+  const playSelectedScene = useStore((state) => state.playSelectedScene);
 
-  const { title, imageUrl, videoUrl } = props.scene;
+  const { title, imageUrl, sceneId } = props.scene;
   return (
     <Container
       onClick={() => {
-        playNextVideo(videoUrl);
+        playSelectedScene(sceneId);
       }}
     >
       <Img src={imageUrl} />

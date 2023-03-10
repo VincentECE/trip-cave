@@ -1,16 +1,13 @@
 import { io, Socket } from "socket.io-client";
 import { useStore } from "../store";
 import { PI_CLIENT_HOST_IP } from "../../../app-values";
+import { contentMap } from "../../../pi-server/content-map";
 
 // const serverUrl: string = process.env.REACT_APP_PI_URL || 'http://localhost:3001';
 // const serverUrl: string = "http://localhost:3001";
 
-const {
-  pauseVideo,
-  playVideo,
-  goFullScreen,
-  playNextVideo
-} = useStore.getState();
+const { pauseVideo, playVideo, goFullScreen, playNextVideo } =
+  useStore.getState();
 
 export let clientSocket: Socket;
 
@@ -47,15 +44,17 @@ export const establishConnection = () => {
 
   clientSocket.on("goFullScreen", () => {
     console.log("I should be fullScreen...");
-     goFullScreen();
+    goFullScreen();
   });
 
-  clientSocket.on("playNextVideo", (videoUrl?: string) => {
-    console.log(videoUrl);
-    playNextVideo(videoUrl);
+  clientSocket.on("playSelectedScene", (sceneId: number) => {
+    const contentInfo = contentMap[sceneId];
+    console.log(`Playing Scene ${contentInfo.title}`);
+    playNextVideo(contentInfo.videoUrl);
   });
 
   clientSocket.on("playNow", () => {
+    console.log("play now from socket");
     playVideo();
   });
 };

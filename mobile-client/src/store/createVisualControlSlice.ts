@@ -4,7 +4,7 @@ import { UnifiedStoreType } from "./useStore";
 
 export interface VisualControlType {
   playNow: () => void;
-  playNextVideo: (video: string) => void;
+  playSelectedScene: (sceneId: number) => void;
 }
 
 export const createVisualControlSlice: StateCreator<
@@ -16,7 +16,7 @@ export const createVisualControlSlice: StateCreator<
   playNow: () => {
     mobileClientSocket.emit("playNow");
   },
-  playNextVideo: (video: string) => {
-    mobileClientSocket.emit("playNextVideo", video);
-  }
+  playSelectedScene: (sceneId: number) => {
+    mobileClientSocket.emit("playSelectedScene", sceneId);
+  },
 });
