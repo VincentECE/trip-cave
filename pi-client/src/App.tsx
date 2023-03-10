@@ -3,10 +3,16 @@ import { establishConnection, clientSocket } from "./socket";
 import { Video } from "./features";
 import { QRCodeSVG } from "qrcode.react";
 import { MOBILE_CLIENT_IP } from "../../app-values";
+import { useStore } from "./store";
 
 const App = (): JSX.Element => {
+  const { goFullScreen } = useStore((state) => ({
+    goFullScreen: state.goFullScreen,
+  }));
+
   useEffect(() => {
     establishConnection();
+    goFullScreen();
   });
 
   return (
@@ -27,7 +33,9 @@ const App = (): JSX.Element => {
           Server Health Ping
         </button>
         <QRCodeSVG value={MOBILE_CLIENT_IP} />
-        <Video />
+        <div>
+          <Video />
+        </div>
       </header>
     </div>
   );

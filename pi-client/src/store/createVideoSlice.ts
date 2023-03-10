@@ -31,21 +31,21 @@ export const createVideoSlice: StateCreator<
       set({ currentVideo });
     },
     setVideoRef: (videoRef) => {
-      set({ videoRef, videoRefIsLoaded: true });      
+      set({ videoRef, videoRefIsLoaded: true });
     },
-    playVideo: () => {     
+    playVideo: () => {
       get().videoRef?.current?.play();
     },
     pauseVideo: () => {
       get().videoRef?.current?.pause();
     },
     playNextVideo: (video?: string) => {
-      video && get().setCurrentVideo(video); 
+      video && get().setCurrentVideo(video);
       get().pauseVideo();
       get().videoRef?.current?.load();
     },
     goFullScreen: () => {
-      document.getElementById("video1-div")?.requestFullscreen();
+      document.getElementById("video-player")?.requestFullscreen();
     },
-  }
+  };
 };
