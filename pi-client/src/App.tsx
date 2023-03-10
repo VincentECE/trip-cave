@@ -1,17 +1,18 @@
-import logo from "./assets/react.svg";
-import "./App.css";
-import React, { useRef, useEffect, useState } from "react";
-import "./App.css";
-import { VideoPlayer1, VideoPlayer2 } from "./components";
-import { useStore } from "./store";
+import { useEffect } from "react";
 import { establishConnection, clientSocket } from "./socket";
-import { VideoPage } from "./features";
+import { Video } from "./features";
 import { QRCodeSVG } from "qrcode.react";
 import { MOBILE_CLIENT_IP } from "../../app-values";
+import { useStore } from "./store";
 
 const App = (): JSX.Element => {
+  const { goFullScreen } = useStore((state) => ({
+    goFullScreen: state.goFullScreen,
+  }));
+
   useEffect(() => {
     establishConnection();
+    goFullScreen();
   });
 
   return (
@@ -32,7 +33,9 @@ const App = (): JSX.Element => {
           Server Health Ping
         </button>
         <QRCodeSVG value={MOBILE_CLIENT_IP} />
-        <VideoPage />
+        <div>
+          <Video />
+        </div>
       </header>
     </div>
   );

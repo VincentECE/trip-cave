@@ -8,8 +8,6 @@ import { MediaBar } from "./components/MediaBar";
 import { QueueList } from "./components/QueueList/QueueList";
 
 const AppContainer = styled.div`
-  width: 100%;
-  height: 100%;
   background-color: ${(props) => props.theme.color.appBg};
   padding: 20px;
   min-width: 360px;

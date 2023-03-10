@@ -1,4 +1,4 @@
-import styled, { keyframes } from "styled-components";
+import styled, { css, keyframes } from "styled-components";
 
 const transitionIn = keyframes`
     from {
@@ -16,9 +16,21 @@ const transitionOut = keyframes`
     }
 `;
 
-export const VideoPlayerContainer = styled.div<{ hide: boolean }>`
-  animation: ${(props) => (props.hide ? transitionIn : transitionOut)} 10s
-    forwards;
-  visibility: ${(props) => (!props.hide ? "hidden" : "visible")} forwards;
-  position: absolute;
+const animationTransitionIn = css`animation: ${transitionIn} 10s forwards`
+const animationTransitionOut = css`animation: ${transitionOut} 10s forwards`
+
+export const VideoPlayerContainer = styled.div`
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+`;
+
+export const Video = styled.video<{ hide: boolean }>`
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  &:fullscreen {
+    ${(props) => props.hide ?  animationTransitionIn : animationTransitionOut}
+  }
 `;

@@ -6,6 +6,8 @@ import {
 import { toast } from "react-toastify";
 import { HiQueueList } from "react-icons/hi2";
 import { VscVmConnect } from "react-icons/vsc";
+import { useStore } from "../../store";
+
 export type MobileBottomTabBarProps = {
   children: JSX.Element;
 };
@@ -14,6 +16,8 @@ export const MobileBottomTabBar = ({ children }: MobileBottomTabBarProps) => {
   const checkPiServer = () => {
     toast.success("Pinging server! Looks healthy!");
   };
+  const goFullScreen = useStore((state) => state.goFullScreen);
+
   return (
     <Container>
       {children}
@@ -23,6 +27,9 @@ export const MobileBottomTabBar = ({ children }: MobileBottomTabBarProps) => {
         </IconContainer>
         <IconContainer>
           <HiQueueList />
+        </IconContainer>
+        <IconContainer>
+          <button onClick={goFullScreen}>Ugly fullscreen button</button>
         </IconContainer>
       </BottomTabContainer>
     </Container>
