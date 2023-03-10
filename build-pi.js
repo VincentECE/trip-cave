@@ -15,6 +15,7 @@ if (os.platform() === "win32") {
 
   commands = [
     "rmdir /s /q production-build", //deletes all contents inside the production-build directory
+    "mkdir production-build",
     "cd pi-server && npx tsc",
     "cd mobile-client && yarn build",
     "cd pi-client && yarn build",
@@ -22,8 +23,8 @@ if (os.platform() === "win32") {
     "cd pi-server && cp -r private ../production-build/dist/pi-server/src",
     "cd pi-server && cp -r public ../production-build/dist/pi-server/src",
     "cd pi-server && cp -r node_modules ../production-build",
-    "cd production-build && tar -czvf dist.zip dist",
-    "cd production-build && tar -czvf node_modules.zip node_modules",
+    // "cd production-build && tar -czvf dist.zip dist",
+    // "cd production-build && tar -czvf node_modules.zip node_modules",
   ];
 } else {
   // Current OS is Unix (Linux, macOS, etc.)
@@ -32,6 +33,7 @@ if (os.platform() === "win32") {
   );
   commands = [
     "rm -rf production-build", //deletes all contents inside the production-build directory
+    "mkdir production-build",
     "cd pi-server && npx tsc",
     "cd mobile-client && yarn build",
     "cd pi-client && yarn build",
