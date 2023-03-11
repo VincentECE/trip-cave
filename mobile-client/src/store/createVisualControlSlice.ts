@@ -18,6 +18,7 @@ export const createVisualControlSlice: StateCreator<
     mobileClientSocket.emit("playNow");
   },
   playSelectedScene: (sceneId: number) => {
+    console.log("playSelectedScene");
     mobileClientSocket.emit("playSelectedScene", sceneId);
   },
 

@@ -12,7 +12,7 @@ const App = (): JSX.Element => {
 
   useEffect(() => {
     establishConnection();
-    goFullScreen();
+    // goFullScreen();
   });
 
   return (

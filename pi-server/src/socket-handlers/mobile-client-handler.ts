@@ -51,7 +51,7 @@ export const mobileClientHandler = (io: Server, socket: Socket) => {
       return; //todo: add error handling
     }
 
-    console.log("playNow sceneId: ", sceneId);
+    console.log("playSelectedScene sceneId: ", sceneId);
     piClientSocket.emit("playSelectedScene", sceneId);
   });
 };
