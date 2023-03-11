@@ -12,7 +12,6 @@ const { pauseVideo, playVideo, goFullScreen, playNextVideo } =
 export let clientSocket: Socket;
 
 export const establishConnection = () => {
-  // clientSocket = io(PI_CLIENT_HOST_IP);
   clientSocket = io(PI_CLIENT_HOST_IP);
 
   clientSocket.on("connect_error", () => {
