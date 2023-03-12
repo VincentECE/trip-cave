@@ -12,7 +12,7 @@ if (os.platform() === "win32") {
 
   commands = [
     "taskkill /f /im firefox.exe",
-    "cd .. && cd .. && cd prod-assets && start TripCave.lnk",
+    "cd .. && cd prod-assets && start TripCave.lnk",
   ];
 } else {
   // Current OS is Unix (Linux, macOS, etc.)
