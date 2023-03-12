@@ -10,6 +10,7 @@ const piClient_server = http.createServer(piClientApp);
 const mobileClient_server = http.createServer(mobileClientApp);
 import { Server, Socket } from "socket.io";
 import { mobileClientRouter } from "./routes";
+import { openBrowser } from "./utils/open-browser";
 import cors from "cors";
 // require("./db");
 // const PORT = process.env.PORT; //todo: add .env file
@@ -84,3 +85,5 @@ try {
   console.error("unable to start mobile-client: ", err);
   //todo: error logging here
 }
+
+openBrowser();

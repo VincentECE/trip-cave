@@ -1,53 +1,64 @@
 import { spawn } from "child_process";
+import { delay } from "./delay";
 import os from "os";
 
 // Define the commands to be executed
 
-let commands;
+let commands: string[];
 
 if (os.platform() === "win32") {
   // Current OS is Windows
   console.log("Windows detected");
 
   commands = [
-    "taskkill /f /im chrome.exe",
-    "cd ..",
-    "cd pi-server",
-    "yarn start",
-    "start chrome",
+    "taskkill /f /im firefox.exe",
+    "cd .. && cd .. && cd prod-assets && start TripCave.lnk",
   ];
 } else {
   // Current OS is Unix (Linux, macOS, etc.)
   console.log("Unix detected");
-  commands = [
-    "pkill chrome",
-    "cd ..",
-    "cd pi-server",
-    "yarn start",
-    "start chrome",
-  ];
+  commands = ["pkill firefox", "cd prod-assets && start TripCave.lnk"];
 }
 
 //in windows, the first command should be replaced with "taskkill /f /im chrome.exe" because pkill is only for unix based systems
 // Spawn a child process for each command
-for (const command of commands) {
-  const child = spawn(command, { shell: true });
-  child.stdout.on("data", (data) => {
-    console.log(`stdout: ${data}`);
-  });
-  child.stderr.on("data", (data) => {
-    console.error(`stderr: ${data}`);
-  });
-  child.on("error", (error) => {
-    console.error(`error: ${error.message}`);
-  });
-  child.on("close", (code) => {
-    console.log(`child process exited with code ${code}`);
-  });
-}
+const commandsLength = commands.length;
+let currentCommand = 1;
+let failed = 0;
 
-//the idea of making this script is to run it to start the server every time the RBPi reboots
-// This can be run from the dist folder because that's where this typescript is transpiled
+export const openBrowser = async () => {
+  for (const command of commands) {
+    const child = spawn(command, { shell: true });
+    await new Promise((resolve, reject) => {
+      child.stdout.on("data", (data) => {
+        console.log(`stdout: ${data}`);
+      });
+      child.stderr.on("data", (data) => {
+        console.error(`stderr: ${data}`);
+      });
+      child.on("error", (error) => {
+        console.error(`error: ${error.message}`);
+        failed++;
+        reject(error);
+      });
+      child.on("close", (code) => {
+        console.log(`child process exited with code ${code}`);
+        resolve(undefined);
+      });
+    });
+
+    console.log(
+      `Ran ${currentCommand}/${commandsLength} commands. Failed ${failed} commands `
+    );
+
+    if (currentCommand === commandsLength) {
+      console.log("DONE!");
+    }
+
+    currentCommand++;
+    await delay(3);
+  }
+};
 
 /*
 
