@@ -21,7 +21,7 @@ if (os.platform() === "win32") {
     "cd pi-client && yarn build",
     "cd pi-server && cp -r dist ../production-build",
     "cd pi-server && cp -r private ../production-build/dist/pi-server/src",
-    "cd pi-server && cp -r public ../production-build/dist/pi-server",
+    "cd pi-server && cp -r public ../production-build/dist/pi-server/src",
     "cd pi-server && cp -r node_modules ../production-build",
     "cd pi-server && cp -r prod-assets ../production-build/dist/pi-server",
     // "cd production-build && tar -czvf dist.zip dist",

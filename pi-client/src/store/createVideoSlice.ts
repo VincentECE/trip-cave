@@ -45,7 +45,7 @@ export const createVideoSlice: StateCreator<
       get().videoRef?.current?.load();
     },
     goFullScreen: () => {
-      document.getElementById("video-player")?.requestFullscreen();
+      document.getElementById("video-player-container")?.requestFullscreen();
     },
   };
 };
