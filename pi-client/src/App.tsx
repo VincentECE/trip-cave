@@ -1,4 +1,4 @@
-import { useEffect } from "react";
+import { useEffect, useState } from "react";
 import { establishConnection, clientSocket } from "./socket";
 import { Video } from "./features";
 import { QRCodeSVG } from "qrcode.react";
@@ -6,6 +6,8 @@ import { MOBILE_CLIENT_IP } from "../../app-values";
 import { useStore } from "./store";
 
 const App = (): JSX.Element => {
+  const [isFullScreen, setIsFullScreen] = useState(false);
+
   const { goFullScreen } = useStore((state) => ({
     goFullScreen: state.goFullScreen,
   }));
@@ -13,7 +15,7 @@ const App = (): JSX.Element => {
   useEffect(() => {
     establishConnection();
 
-    if (!document.fullscreenElement) {
+    if (!isFullScreen) {
       goFullScreen();
     }
   });
