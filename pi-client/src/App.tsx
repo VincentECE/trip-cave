@@ -12,19 +12,15 @@ const App = (): JSX.Element => {
 
   useEffect(() => {
     establishConnection();
-    // goFullScreen();
+
+    if (!document.fullscreenElement) {
+      goFullScreen();
+    }
   });
 
   return (
     <div className="App">
       <header className="App-header">
-        <button
-          onClick={() => {
-            establishConnection();
-          }}
-        >
-          Establish Connection
-        </button>
         <button
           onClick={() => {
             clientSocket.emit("ServerHealthCheck");
@@ -33,9 +29,7 @@ const App = (): JSX.Element => {
           Server Health Ping
         </button>
         <QRCodeSVG value={MOBILE_CLIENT_IP} />
-        <div>
-          <Video />
-        </div>
+        <Video />
       </header>
     </div>
   );

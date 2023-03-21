@@ -11,14 +11,13 @@ export const VideoPlayer = ({
   currentVideo,
   videoRef,
 }: VideoPlayerProps): JSX.Element => (
-  <VideoPlayerContainer>
+  <VideoPlayerContainer id="video-player-container">
     <div>
       <Video
         hide={hide}
         ref={videoRef}
         id="video-player"
         width="100%"
-        controls
         autoPlay
         loop
         src={currentVideo}
