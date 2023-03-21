@@ -4,7 +4,8 @@ var Service = require("node-windows").Service;
 var svc = new Service({
   name: "TripCave App",
   description: "The coolest projection mapping app.",
-  script: "C:\\Users\\kioskMode\\Documents\\TripCave\\index.js",
+  script:
+    "C:\\Users\\KioskMode\\Documents\\TripCave\\dist\\pi-server\\src\\index.js",
   nodeOptions: ["--harmony", "--max_old_space_size=4096"],
   //, workingDirectory: '...'
   //, allowServiceLogon: true
@@ -14,6 +15,7 @@ var svc = new Service({
 // process is available as a service.
 svc.on("install", function () {
   svc.start();
+  console.log("Installation complete");
 });
 
 svc.install();
