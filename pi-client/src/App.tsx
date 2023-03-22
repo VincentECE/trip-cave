@@ -1,4 +1,4 @@
-import { useEffect } from "react";
+import { useEffect, useState } from "react";
 import { establishConnection, clientSocket } from "./socket";
 import { Video } from "./features";
 import { QRCodeSVG } from "qrcode.react";
@@ -6,25 +6,23 @@ import { MOBILE_CLIENT_IP } from "../../app-values";
 import { useStore } from "./store";
 
 const App = (): JSX.Element => {
+  const [isFullScreen, setIsFullScreen] = useState(false);
+
   const { goFullScreen } = useStore((state) => ({
     goFullScreen: state.goFullScreen,
   }));
 
   useEffect(() => {
     establishConnection();
-    // goFullScreen();
+
+    if (!isFullScreen) {
+      goFullScreen();
+    }
   });
 
   return (
     <div className="App">
       <header className="App-header">
-        <button
-          onClick={() => {
-            establishConnection();
-          }}
-        >
-          Establish Connection
-        </button>
         <button
           onClick={() => {
             clientSocket.emit("ServerHealthCheck");
@@ -33,9 +31,7 @@ const App = (): JSX.Element => {
           Server Health Ping
         </button>
         <QRCodeSVG value={MOBILE_CLIENT_IP} />
-        <div>
-          <Video />
-        </div>
+        <Video />
       </header>
     </div>
   );

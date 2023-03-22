@@ -16,8 +16,12 @@ const transitionOut = keyframes`
     }
 `;
 
-const animationTransitionIn = css`animation: ${transitionIn} 10s forwards`
-const animationTransitionOut = css`animation: ${transitionOut} 10s forwards`
+const animationTransitionIn = css`
+  animation: ${transitionIn} 10s forwards;
+`;
+const animationTransitionOut = css`
+  animation: ${transitionOut} 10s forwards;
+`;
 
 export const VideoPlayerContainer = styled.div`
   display: flex;
@@ -30,7 +34,8 @@ export const Video = styled.video<{ hide: boolean }>`
   display: flex;
   justify-content: center;
   align-items: center;
+  width: 100%;
   &:fullscreen {
-    ${(props) => props.hide ?  animationTransitionIn : animationTransitionOut}
+    ${(props) => (props.hide ? animationTransitionIn : animationTransitionOut)}
   }
 `;
