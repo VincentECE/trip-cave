@@ -7,13 +7,14 @@ export interface VideoType {
   currentVideo: string;
   videoRef?: React.RefObject<HTMLVideoElement> | null; //todo: strictly type this eventually...
   videoRefIsLoaded: boolean;
-  showPlayer: boolean;
+  triggerAnimation: boolean;
   setCurrentVideo: (currentVideo: string) => void;
   setVideoRef: (videoRef: any) => void;
   playVideo: () => void;
   pauseVideo: () => void;
   playNextVideo: (video?: string) => void;
   goFullScreen: () => void;
+  setTriggerAnimation: (trigger: boolean) => void;
 }
 
 export const createVideoSlice: StateCreator<
@@ -27,25 +28,18 @@ export const createVideoSlice: StateCreator<
     videoRef: null,
     videoRefIsLoaded: false,
     showPlayer: true,
-    setCurrentVideo: (currentVideo) => {
-      set({ currentVideo });
-    },
-    setVideoRef: (videoRef) => {
-      set({ videoRef, videoRefIsLoaded: true });
-    },
-    playVideo: () => {
-      get().videoRef?.current?.play();
-    },
-    pauseVideo: () => {
-      get().videoRef?.current?.pause();
-    },
+    triggerAnimation: true,
+    setCurrentVideo: (currentVideo) => set({ currentVideo, triggerAnimation: true }),
+    setVideoRef: (videoRef) => set({ videoRef }),
+    playVideo: () => get().videoRef?.current?.play(),
+    pauseVideo: () => get().videoRef?.current?.pause(),
     playNextVideo: (video?: string) => {
-      video && get().setCurrentVideo(video);
-      get().pauseVideo();
+      get().setTriggerAnimation(false);
+      video && get().setCurrentVideo(video);      
       get().videoRef?.current?.load();
     },
-    goFullScreen: () => {
-      document.getElementById("video-player-container")?.requestFullscreen();
-    },
+    goFullScreen: () =>
+      document.getElementById("video-player-container")?.requestFullscreen(),
+    setTriggerAnimation: (triggerAnimation: boolean) => set({ triggerAnimation }),
   };
 };

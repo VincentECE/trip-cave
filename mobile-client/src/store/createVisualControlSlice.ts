@@ -6,6 +6,7 @@ export interface VisualControlType {
   playNow: () => void;
   playSelectedScene: (sceneId: number) => void;
   goFullScreen: () => void;
+  getServerStatus: () => void;
 }
 
 export const createVisualControlSlice: StateCreator<
@@ -13,7 +14,7 @@ export const createVisualControlSlice: StateCreator<
   [],
   [],
   VisualControlType
-> = (set, get) => ({
+> = () => ({
   playNow: () => {
     mobileClientSocket.emit("playNow");
   },
@@ -21,8 +22,10 @@ export const createVisualControlSlice: StateCreator<
     console.log("playSelectedScene");
     mobileClientSocket.emit("playSelectedScene", sceneId);
   },
-
   goFullScreen: () => {
     mobileClientSocket.emit("goFullScreen");
   },
+  getServerStatus: () => {
+    mobileClientSocket.emit("serverStatus");    
+  }
 });

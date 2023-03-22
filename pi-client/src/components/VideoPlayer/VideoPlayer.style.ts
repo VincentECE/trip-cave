@@ -17,7 +17,7 @@ const transitionOut = keyframes`
 `;
 
 const animationTransitionIn = css`
-  animation: ${transitionIn} 10s forwards;
+  animation: ${transitionIn} 2s forwards;
 `;
 const animationTransitionOut = css`
   animation: ${transitionOut} 10s forwards;
@@ -35,7 +35,8 @@ export const Video = styled.video<{ hide: boolean }>`
   justify-content: center;
   align-items: center;
   width: 100%;
+   ${(props) => (props.hide ? animationTransitionIn : '')}
   &:fullscreen {
-    ${(props) => (props.hide ? animationTransitionIn : animationTransitionOut)}
+    ${(props) => (props.hide ? animationTransitionIn : '')}
   }
 `;

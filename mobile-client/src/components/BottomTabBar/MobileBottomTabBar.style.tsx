@@ -19,8 +19,8 @@ export const BottomTabContainer = styled.div`
 export const IconContainer = styled.div`
   height: 40px;
   width: 40px;
+  cursor: pointer;
   ${flex.default("column")}
-
   svg {
     height: 32px;
     width: 32px;

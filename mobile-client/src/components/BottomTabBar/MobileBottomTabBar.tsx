@@ -3,7 +3,6 @@ import {
   Container,
   IconContainer,
 } from "./MobileBottomTabBar.style";
-import { toast } from "react-toastify";
 import { HiQueueList } from "react-icons/hi2";
 import { VscVmConnect } from "react-icons/vsc";
 import { AiOutlineFullscreen } from "react-icons/ai";
@@ -14,17 +13,19 @@ export type MobileBottomTabBarProps = {
 };
 
 export const MobileBottomTabBar = ({ children }: MobileBottomTabBarProps) => {
-  const checkPiServer = () => {
-    toast.success("Pinging server! Looks healthy!");
-  };
-  const goFullScreen = useStore((state) => state.goFullScreen);
+  const { goFullScreen, getServerStatus } = useStore(
+    ({ goFullScreen, getServerStatus }) => ({
+      goFullScreen,
+      getServerStatus,
+    })
+  );
 
   return (
     <Container>
       {children}
       <BottomTabContainer>
         <IconContainer>
-          <VscVmConnect />
+          <VscVmConnect onClick={getServerStatus} />
         </IconContainer>
         <IconContainer>
           <HiQueueList />

@@ -14,7 +14,7 @@ export const createScenesSlice: StateCreator<
   [],
   [],
   ScenesType
-> = (set, get) => ({
+> = set => ({
   scenes: [],
   scenesIsLoaded: false,
 
