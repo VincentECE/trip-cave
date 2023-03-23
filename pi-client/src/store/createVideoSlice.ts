@@ -1,7 +1,7 @@
 import { StateCreator } from "zustand";
 import { UnifiedStoreType } from "./useStore";
 
-const DEFAULT_VIDEO = "http://localhost:3001/coffee.mp4";
+const DEFAULT_VIDEO = "http://localhost:3001/Coffee.mp4";
 
 export interface VideoType {
   currentVideo: string;
