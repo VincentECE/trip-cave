@@ -6,6 +6,7 @@ import {
 import { toast } from "react-toastify";
 import { HiQueueList } from "react-icons/hi2";
 import { VscVmConnect } from "react-icons/vsc";
+import { AiOutlineFullscreen } from "react-icons/ai";
 import { useStore } from "../../store";
 
 export type MobileBottomTabBarProps = {
@@ -29,7 +30,7 @@ export const MobileBottomTabBar = ({ children }: MobileBottomTabBarProps) => {
           <HiQueueList />
         </IconContainer>
         <IconContainer>
-          <button onClick={goFullScreen}>Ugly fullscreen button</button>
+          <AiOutlineFullscreen onClick={goFullScreen} />
         </IconContainer>
       </BottomTabContainer>
     </Container>
