@@ -23,20 +23,26 @@ const animationTransitionOut = css`
   animation: ${transitionOut} 10s forwards;
 `;
 
+const animationTransitionNone = css`
+    animation: none;
+`
+
 export const VideoPlayerContainer = styled.div`
   display: flex;
   justify-content: center;
   align-items: center;
-  flex-direction: column;
+  flex-direction: column;  
 `;
 
 export const Video = styled.video<{ hide: boolean }>`
   display: flex;
   justify-content: center;
   align-items: center;
-  width: 100%;
-   ${(props) => (props.hide ? animationTransitionIn : '')}
-  &:fullscreen {
-    ${(props) => (props.hide ? animationTransitionIn : '')}
-  }
+  width: 100%;  
+  ${({ hide }) => hide && animationTransitionIn }
 `;
+
+// animation: ${({ hide }) => hide ? `${transitionOut} 10s forwards` : 'none'};
+  // &:fullscreen {
+  //   ${(props) => (props.hide ? animationTransitionIn : '')}
+  // }

@@ -15,9 +15,9 @@ const App = (): JSX.Element => {
   useEffect(() => {
     establishConnection();
 
-    if (!isFullScreen) {
-      goFullScreen();
-    }
+    // if (!isFullScreen) {
+    //   goFullScreen();
+    // }
   });
 
   return (

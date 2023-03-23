@@ -27,32 +27,18 @@ export const establishConnection = () => {
 
   clientSocket.on("serverStatus", (data) => {
     const { status } = data;
-    console.log(status);
   });
 
-  clientSocket.on("playVideo", () => {
-    console.log("I should be playing something...");
-    playVideo();
-  });
+  clientSocket.on("playVideo", playVideo);
 
-  clientSocket.on("pauseVideo", () => {
-    console.log("Video should be paused");
-    pauseVideo();
-  });
+  clientSocket.on("pauseVideo", pauseVideo);
 
-  clientSocket.on("goFullScreen", () => {
-    console.log("I should be fullScreen...");
-    goFullScreen();
-  });
+  clientSocket.on("goFullScreen", goFullScreen);
 
   clientSocket.on("playSelectedScene", (sceneId: number) => {
     const contentInfo = contentMap[sceneId];
-    console.log(`Playing Scene ${contentInfo.title}`);
     playNextVideo(contentInfo.videoUrl);
   });
 
-  clientSocket.on("playNow", () => {
-    console.log("play now from socket");
-    playVideo();
-  });
+  clientSocket.on("playNow", playVideo);
 };

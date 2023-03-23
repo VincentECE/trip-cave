@@ -12,25 +12,33 @@ export const Video = (): JSX.Element => {
         setVideoRef,
         setTriggerAnimation,
         triggerAnimation,
+        showPlayer,
       }) => ({
         currentVideo,
         videoRef,
         setVideoRef,
         setTriggerAnimation,
         triggerAnimation,
+        showPlayer,
       })
     );
 
   useEffect(() => {
-    setVideoRef(videoRef);
-  }, [currentVideo]);
+    if (!videoRef) {
+      setVideoRef(videoRef);
+    }
+  }, [videoRef, currentVideo, triggerAnimation]);
 
-  return (
-    <VideoPlayer
-      currentVideo={currentVideo}
-      videoRef={videoRef}
-      setTriggerAnimation={setTriggerAnimation}
-      triggerAnimation={triggerAnimation}
-    />
+  return currentVideo ? (
+    <>
+      <VideoPlayer
+        currentVideo={currentVideo}
+        videoRef={videoRef}
+        setTriggerAnimation={setTriggerAnimation}
+        triggerAnimation={triggerAnimation}
+      />
+    </>
+  ) : (
+    <></>
   );
 };

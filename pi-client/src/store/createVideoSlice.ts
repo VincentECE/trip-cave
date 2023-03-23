@@ -15,6 +15,7 @@ export interface VideoType {
   playNextVideo: (video?: string) => void;
   goFullScreen: () => void;
   setTriggerAnimation: (trigger: boolean) => void;
+  showPlayer: boolean
 }
 
 export const createVideoSlice: StateCreator<
@@ -22,24 +23,23 @@ export const createVideoSlice: StateCreator<
   [],
   [],
   VideoType
-> = (set, get) => {
-  return {
+> = (set, get) => ({
     currentVideo: DEFAULT_VIDEO,
     videoRef: null,
     videoRefIsLoaded: false,
     showPlayer: true,
     triggerAnimation: true,
-    setCurrentVideo: (currentVideo) => set({ currentVideo, triggerAnimation: true }),
+    setCurrentVideo: (currentVideo) => set({ currentVideo, triggerAnimation: true, showPlayer: true }),
     setVideoRef: (videoRef) => set({ videoRef }),
     playVideo: () => get().videoRef?.current?.play(),
     pauseVideo: () => get().videoRef?.current?.pause(),
     playNextVideo: (video?: string) => {
-      get().setTriggerAnimation(false);
-      video && get().setCurrentVideo(video);      
+      set({ triggerAnimation: false, showPlayer: false });
+      get().pauseVideo();
+      video && get().setCurrentVideo(video);    
       get().videoRef?.current?.load();
     },
     goFullScreen: () =>
       document.getElementById("video-player-container")?.requestFullscreen(),
     setTriggerAnimation: (triggerAnimation: boolean) => set({ triggerAnimation }),
-  };
-};
+  });
