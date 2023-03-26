@@ -44,12 +44,32 @@ Start the pi-server
 - **cd pi-server**
 - **yarn start**
 
+# Windows automatic launch on startup
+
+Install PM2
+
+- **npm install pm2 -g**
+
+Create a shell startup shortcut
+
+- Open run.exe
+- Run **shell:startup**
+- Right click -> new -> shortcut
+- In the location field, enter the location of the command prompt. Ex: **%windir%\system32\cmd.exe**
+- Click next and type in the name of the application or whatever u wanna name it. Ex: **TripCave**
+- Click Finish
+- Right click the new shortcut -> properties
+- In the target field after what's already there, type in: "/k pm2 start (absolute path of the app) --watch" Ex: **/k pm2 start "C:\Users\vtran\Desktop\TripCave\dist\pi-server\src\index.js" --watch**
+- In the start in field, fill in the absolute path of the application. Ex: **C:\Users\vtran\Desktop\TripCave\dist\pi-server\src**
+- In the run dropdown, select minimized
+- Click apply and then Ok
+
 # Running the application on the pi
 
 - make sure the pi-server directory has all the build files in there from all 3 directories
 - run the startup-script from pi-server -> dist
 
-## IMPORTANT! When running prod on the PI
+## IMPORTANT! When running prod on the PI/Mini PC
 
 - The folders that contain the video and image content (private and public folders) need to be in dist/pi-server/src
 - The node modules need to be on the same level as the dist folder
