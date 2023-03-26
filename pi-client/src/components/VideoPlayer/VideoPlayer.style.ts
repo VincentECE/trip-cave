@@ -20,5 +20,9 @@ export const VideoPlayerContainer = styled.div<{ hide: boolean }>`
   animation: ${(props) => (props.hide ? transitionIn : transitionOut)} 10s
     forwards;
   visibility: ${(props) => (!props.hide ? "hidden" : "visible")} forwards;
-  position: absolute;
+  video {
+    height: auto;
+    max-width: 550px;
+    width: 100%;
+  }
 `;

@@ -1,9 +1,4 @@
-import logo from "./assets/react.svg";
-import "./App.css";
-import React, { useRef, useEffect, useState } from "react";
-import "./App.css";
-import { VideoPlayer1, VideoPlayer2 } from "./components";
-import { useStore } from "./store";
+import { useEffect } from "react";
 import { establishConnection, clientSocket } from "./socket";
 import { VideoPage } from "./features";
 import { QRCodeSVG } from "qrcode.react";
@@ -15,8 +10,8 @@ const App = (): JSX.Element => {
   });
 
   return (
-    <div className="App">
-      <header className="App-header">
+    <div>
+      <div>
         <button
           onClick={() => {
             establishConnection();
@@ -31,9 +26,9 @@ const App = (): JSX.Element => {
         >
           Server Health Ping
         </button>
-        <QRCodeSVG value={MOBILE_CLIENT_IP} />
-        <VideoPage />
-      </header>
+      </div>
+      <QRCodeSVG value={MOBILE_CLIENT_IP} />
+      <VideoPage />
     </div>
   );
 };

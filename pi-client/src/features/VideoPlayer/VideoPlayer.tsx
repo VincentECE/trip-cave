@@ -1,5 +1,6 @@
-import { VideoPlayer1, VideoPlayer2 } from "../components/VideoPlayer";
-import { useStore } from "../store";
+import { VideoPlayer1, VideoPlayer2 } from "../../components/VideoPlayer";
+import { useStore } from "../../store";
+import { Container } from "./VideoPlayer.style";
 
 export const VideoPage = (): JSX.Element => {
   const { showPlayer1, showPlayer2 } = useStore((state) => ({
@@ -9,10 +10,10 @@ export const VideoPage = (): JSX.Element => {
 
   const videoIdentifier = showPlayer1 ? "1" : "2";
   return (
-    <div>
+    <Container>
       <h3>{`Player ${videoIdentifier}`}</h3>
       <VideoPlayer1 hide={videoIdentifier === "1"} />
       <VideoPlayer2 hide={videoIdentifier === "2"} />
-    </div>
+    </Container>
   );
 };

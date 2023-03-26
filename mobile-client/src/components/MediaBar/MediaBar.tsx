@@ -7,6 +7,7 @@ import {
   AiOutlineCaretRight,
 } from "react-icons/ai";
 import { mobileClientSocket } from "../../socket";
+import { SOCKET_EMIT } from "../../socket/constant";
 
 export type ControlBarProps = {
   onClick?: (isPlaying: boolean) => void;
@@ -29,7 +30,7 @@ export const MediaBar = (props: ControlBarProps): JSX.Element => {
         <IconContainer
           onClick={() => {
             handleSwitch();
-            mobileClientSocket.emit("pauseVideo");
+            mobileClientSocket.emit(SOCKET_EMIT.PAUSE);
           }}
         >
           <AiOutlinePause />
@@ -38,13 +39,15 @@ export const MediaBar = (props: ControlBarProps): JSX.Element => {
         <IconContainer
           onClick={() => {
             handleSwitch();
-            mobileClientSocket.emit("playVideo");
+            mobileClientSocket.emit(SOCKET_EMIT.PLAY);
           }}
         >
           <AiOutlineCaretRight />
         </IconContainer>
       )}
-      <IconContainer onClick={() => mobileClientSocket.emit("playNextVideo")}>
+      <IconContainer
+        onClick={() => mobileClientSocket.emit(SOCKET_EMIT.PLAY_NEXT_VIDEO)}
+      >
         <AiOutlineForward />
       </IconContainer>
     </ControlContainer>
