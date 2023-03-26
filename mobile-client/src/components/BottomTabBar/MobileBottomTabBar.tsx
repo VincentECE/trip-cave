@@ -6,15 +6,13 @@ import {
 import { toast } from "react-toastify";
 import { HiQueueList } from "react-icons/hi2";
 import { VscVmConnect } from "react-icons/vsc";
-<<<<<<< HEAD
+
 import { BiFullscreen } from "react-icons/bi";
 import { mobileClientSocket } from "../../socket";
 import { SOCKET_EMIT } from "../../socket/constant";
-=======
 import { AiOutlineFullscreen } from "react-icons/ai";
 import { useStore } from "../../store";
 
->>>>>>> main
 export type MobileBottomTabBarProps = {
   children: JSX.Element;
 };
