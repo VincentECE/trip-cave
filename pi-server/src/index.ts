@@ -11,6 +11,7 @@ const mobileClient_server = http.createServer(mobileClientApp);
 import { Server, Socket } from "socket.io";
 import { mobileClientRouter } from "./routes";
 import { openBrowser } from "./utils/open-browser";
+import { exitOnException } from "../middleware/error-handling";
 import cors from "cors";
 // require("./db");
 // const PORT = process.env.PORT; //todo: add .env file
@@ -27,23 +28,13 @@ mobileClientApp.use(
 mobileClientApp.use(mobileClientRouter);
 piClientApp.use(express.static("private/video-loops"));
 
-mobileClientApp.use((err: any, req: any, res: any, next: any) => {
-  //todo: INTENTIONAL SERVER CRASH MIDDLEWARE. Move this to middleware folder
-  console.log("PROCESS EXIT HIT");
-  console.error(err.stack);
-  process.exit(1);
-});
+mobileClientApp.use(exitOnException); // error handling
 
 piClientApp.use(
   express.static(path.resolve(__dirname, "clients-static-files", "pi-client"))
 ); //static file stuff
 
-piClientApp.use((err: any, req: any, res: any, next: any) => {
-  //todo: INTENTIONAL SERVER CRASH MIDDLEWARE. Move this to middleware folder
-  console.log("PROCESS EXIT HIT");
-  console.error(err.stack);
-  process.exit(1);
-});
+piClientApp.use(exitOnException); //error handling
 
 /* @@@@@@@@ Socket.io stuff @@@@@@@*/
 //sets up socket.io
