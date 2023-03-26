@@ -18,3 +18,9 @@ mobileClientRouter.get("/scenes", (req, res) => {
 mobileClientRouter.get("/shareLink", (req, res) => {
   res.send(MOBILE_CLIENT_IP);
 });
+
+mobileClientRouter.put("/throwError", (req, res) => {
+  console.log("throwing error");
+  res.send();
+  throw new Error("Intentional error thrown by mobile client");
+});

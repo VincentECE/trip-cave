@@ -2,7 +2,7 @@ import axios, { ResponseType } from "axios";
 import { MOBILE_CLIENT_IP } from "../../../app-values";
 
 // const url = "http://localhost:3002/scenes";
-const url = `${MOBILE_CLIENT_IP}scenes`;
+const url = MOBILE_CLIENT_IP;
 
 type PlayVideoRequestPayload = {};
 
@@ -17,7 +17,7 @@ export type Scene = {
 
 export const getScenes = async (): Promise<Scene[]> => {
   const options = {
-    url: url,
+    url: `${url}scenes`,
     method: "GET",
     headers: {
       Accept: "application/json",
@@ -26,6 +26,22 @@ export const getScenes = async (): Promise<Scene[]> => {
   };
 
   const { data } = await axios.request<Scene[]>(options);
+
+  return data;
+};
+
+export const throwServerError = async (): Promise<number> => {
+  console.log("trying to throw error to: ", `${url}throwError`);
+  const options = {
+    url: `${url}throwError`,
+    method: "PUT",
+    headers: {
+      Accept: "application/json",
+      "Content-Type": "application/json;charset=UTF-8",
+    },
+  };
+
+  const { data } = await axios.request<number>(options);
 
   return data;
 };
