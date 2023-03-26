@@ -44,8 +44,14 @@ export const mobileClientHandler = (io: Server, socket: Socket) => {
     piClientSocket.emit("playNextVideo");
   });
 
-  mobileClientSocket.on("playNow", (sceneId) => {
-    console.log("playNow sceneId: ", sceneId);
-    piClientSocket.emit("playNow", contentMap[sceneId].videoUrl);
+  // playSelectedVideo
+  mobileClientSocket.on("playSelectedScene", (sceneId: number) => {
+    if (!contentMap[sceneId]) {
+      console.error("Tried to play a sceneId that doesnt exist");
+      return; //todo: add error handling
+    }
+
+    console.log("playSelectedScene sceneId: ", sceneId);
+    piClientSocket.emit("playSelectedScene", sceneId);
   });
 };

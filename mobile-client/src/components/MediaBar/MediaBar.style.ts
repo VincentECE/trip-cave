@@ -3,7 +3,7 @@ import { flex } from "../../style/flex";
 
 export const ControlContainer = styled.div`
   ${flex.default('row')};
-  background-color: ${(props) => props.theme.color.white};
+  background-color: ${(props) => props.theme.color.slateGray};
   opacity: 90%;
   max-height: 75px;
   min-height: 50px;
@@ -18,5 +18,6 @@ export const IconContainer = styled.div`
   svg {
     height: 36px;
     width: 36px;  
+    fill: ${props => props.theme.color.white};
   }
 `

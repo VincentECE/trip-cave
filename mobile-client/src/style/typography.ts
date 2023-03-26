@@ -9,4 +9,5 @@ export const Header3Style = css`
   margin-bottom: 16px;
   margin-right: 12px;
   margin-top: 5px;
+  color: ${props => props.theme.color.white}
 `

@@ -15,6 +15,7 @@ if (os.platform() === "win32") {
 
   commands = [
     "rmdir /s /q production-build", //deletes all contents inside the production-build directory
+    "mkdir production-build",
     "cd pi-server && npx tsc",
     "cd mobile-client && yarn build",
     "cd pi-client && yarn build",
@@ -22,20 +23,27 @@ if (os.platform() === "win32") {
     "cd pi-server && cp -r private ../production-build/dist/pi-server/src",
     "cd pi-server && cp -r public ../production-build/dist/pi-server/src",
     "cd pi-server && cp -r node_modules ../production-build",
-    "cd production-build && tar -czvf dist.zip dist",
-    "cd production-build && tar -czvf node_modules.zip node_modules",
+    "cd pi-server && cp -r prod-assets ../production-build/dist/pi-server",
+    // "cd production-build && tar -czvf dist.zip dist",
+    // "cd production-build && tar -czvf node_modules.zip node_modules",
   ];
 } else {
   // Current OS is Unix (Linux, macOS, etc.)
-  console.log("Unix detected (not written for unix yet)");
+  console.log(
+    "Unix detected (These commands aren't tested for unix systems yet. Windows works tho)"
+  );
   commands = [
+    "rm -rf production-build", //deletes all contents inside the production-build directory
+    "mkdir production-build",
     "cd pi-server && npx tsc",
     "cd mobile-client && yarn build",
     "cd pi-client && yarn build",
-    "cd pi-server && mv -r dist ../production-build",
-    "cd pi-server && mv -r private ../production-build/dist/pi-server/src",
-    "cd pi-server && mv -r public ../production-build/dist/pi-server/src",
-    "cd pi-server && mv -r node_modules ../production-build",
+    "cd pi-server && cp -R dist ../production-build",
+    "cd pi-server && cp -R private ../production-build/dist/pi-server/src",
+    "cd pi-server && cp -R public ../production-build/dist/pi-server/src",
+    "cd pi-server && cp -R node_modules ../production-build",
+    "cd production-build && tar -czvf dist.zip dist",
+    "cd production-build && tar -czvf node_modules.zip node_modules",
   ];
 }
 

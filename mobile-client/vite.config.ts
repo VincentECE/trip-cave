@@ -8,4 +8,7 @@ export default defineConfig({
     outDir:
       "../pi-server/dist/pi-server/src/clients-static-files/mobile-client",
   },
+  server: {
+    port: 3000,
+  }
 });
