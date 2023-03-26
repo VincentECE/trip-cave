@@ -27,9 +27,23 @@ mobileClientApp.use(
 mobileClientApp.use(mobileClientRouter);
 piClientApp.use(express.static("private/video-loops"));
 
+mobileClientApp.use((err: any, req: any, res: any, next: any) => {
+  //todo: INTENTIONAL SERVER CRASH MIDDLEWARE. Move this to middleware folder
+  console.log("PROCESS EXIT HIT");
+  console.error(err.stack);
+  process.exit(1);
+});
+
 piClientApp.use(
   express.static(path.resolve(__dirname, "clients-static-files", "pi-client"))
 ); //static file stuff
+
+piClientApp.use((err: any, req: any, res: any, next: any) => {
+  //todo: INTENTIONAL SERVER CRASH MIDDLEWARE. Move this to middleware folder
+  console.log("PROCESS EXIT HIT");
+  console.error(err.stack);
+  process.exit(1);
+});
 
 /* @@@@@@@@ Socket.io stuff @@@@@@@*/
 //sets up socket.io
