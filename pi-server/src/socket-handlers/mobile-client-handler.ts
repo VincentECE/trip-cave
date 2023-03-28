@@ -4,7 +4,24 @@ import { piClientSocket } from "../socket-handlers";
 import { contentMap } from "../../content-map";
 import os from "os";
 
+export type Scene = {
+  //todo: clean up this jawn later
+  title: string;
+  imageUrl: string;
+  videoUrl: string;
+  tags: string[];
+  categories: string[];
+  sceneId: number;
+  mood?: string[];
+};
+
+export type SceneStatus = {
+  scene: Scene;
+  status: "playing" | "paused";
+};
+
 export let mobileClientSocket: Socket;
+export let sceneStatus: SceneStatus; //todo: this and the currentStatus might be moved to mongo
 
 export const mobileClientHandler = (io: Server, socket: Socket) => {
   const socketId = socket.id;
@@ -31,7 +48,9 @@ export const mobileClientHandler = (io: Server, socket: Socket) => {
 
   mobileClientSocket.on("pauseVideo", () => {
     console.log("Pausing video");
+    sceneStatus.status = "paused";
     piClientSocket.emit("pauseVideo");
+    mobileClientSocket.emit("updateSceneStatus", sceneStatus);
   });
 
   mobileClientSocket.on("goFullScreen", () => {
@@ -51,6 +70,12 @@ export const mobileClientHandler = (io: Server, socket: Socket) => {
       return; //todo: add error handling
     }
 
+    sceneStatus = {
+      scene: contentMap[sceneId], //sets the current status and stuff
+      status: "playing",
+    };
+
+    mobileClientSocket.emit("updateSceneStatus", sceneStatus);
     console.log("playSelectedScene sceneId: ", sceneId);
     piClientSocket.emit("playSelectedScene", sceneId);
   });

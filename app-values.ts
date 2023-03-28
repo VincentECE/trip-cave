@@ -5,11 +5,11 @@ export const MOBILE_CLIENT_PORT = 3002;
     Comment one of these out. It controls where all 3 repos are looking as host
 */
 
-// export const CURRENT_HOST_IP = "http://192.168.86.232:"; //Mini PC windows
+export const CURRENT_HOST_IP = "http://192.168.86.232:"; //Mini PC windows
 // export const CURRENT_HOST_IP = "http://192.168.86.234:"; //Mini PC linux
 // export const CURRENT_HOST_IP = "http://192.168.86.34:"; //desktop PC
 
-export const CURRENT_HOST_IP = "http://localhost:";
+// export const CURRENT_HOST_IP = "http://localhost:";
 
 /************************/
 //the PI_Client host ip needs to change when hosting in prod

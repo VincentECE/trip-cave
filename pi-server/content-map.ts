@@ -1,7 +1,6 @@
 import { PI_CLIENT_HOST_IP, MOBILE_CLIENT_IP } from "../app-values";
 
-export type ContentInfo = {
-  //TODO: RENAME THIS to "scene" TO MATCH THE MOBILE CLIENT TYPE
+export type Scene = {
   title: string;
   imageUrl: string;
   videoUrl: string;
@@ -11,7 +10,7 @@ export type ContentInfo = {
   mood?: string[];
 };
 
-export const contentMap: ContentInfo[] = [
+export const contentMap: Scene[] = [
   {
     title: "Expresso Machine",
     imageUrl: `${MOBILE_CLIENT_IP}Coffee.png`,
