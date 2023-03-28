@@ -22,7 +22,7 @@ export type SceneStatus = {
 
 export let mobileClientSocket: Socket;
 export let sceneStatus: SceneStatus; //todo: this and the currentStatus might be moved to mongo
-
+//todo: sceneStatus doesn't check the pi-client to see what's actually happening. Make sure to ring in to check
 export const mobileClientHandler = (io: Server, socket: Socket) => {
   const socketId = socket.id;
   mobileClientSocket = socket;

@@ -2,6 +2,7 @@ import express from "express";
 import { contentMap } from "../../../content-map";
 import path from "path";
 import { MOBILE_CLIENT_IP } from "../../../../app-values";
+import { sceneStatus } from "../../socket-handlers/mobile-client-handler";
 
 export const mobileClientRouter = express.Router();
 // import controllers here
@@ -17,6 +18,10 @@ mobileClientRouter.get("/scenes", (req, res) => {
 
 mobileClientRouter.get("/shareLink", (req, res) => {
   res.send(MOBILE_CLIENT_IP);
+});
+
+mobileClientRouter.get("/scene-status", (req, res) => {
+  res.send(sceneStatus); //todo: gonna have to throw sceneStatus into a database or something
 });
 
 mobileClientRouter.put("/throwError", (req, res) => {
