@@ -4,6 +4,7 @@ import { SceneStatus } from "../api";
 import { useStore } from "../store";
 
 const serverUrl = MOBILE_CLIENT_IP;
+const { setSceneStatus } = useStore.getState();
 
 export let mobileClientSocket: Socket;
 
@@ -29,9 +30,10 @@ export const establishConnection = () => {
 
   mobileClientSocket.on("updateSceneStatus", (data) => {
     //name is up for debate
-    const { sceneStatus }: { sceneStatus: SceneStatus } = data;
-    const setSceneStatus = useStore((state) => state.setSceneStatus);
+    const sceneStatus: SceneStatus = data;
 
     setSceneStatus(sceneStatus);
+
+    console.log("sceneStatus: ", sceneStatus);
   });
 };

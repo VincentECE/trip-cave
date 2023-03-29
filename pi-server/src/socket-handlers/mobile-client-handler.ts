@@ -75,8 +75,9 @@ export const mobileClientHandler = (io: Server, socket: Socket) => {
       status: "playing",
     };
 
-    mobileClientSocket.emit("updateSceneStatus", sceneStatus);
-    console.log("playSelectedScene sceneId: ", sceneId);
+    mobileClientSocket.broadcast.emit("updateSceneStatus", sceneStatus);
+    console.log("playSelectedScene scene:", sceneStatus);
+
     piClientSocket.emit("playSelectedScene", sceneId);
   });
 };
