@@ -6,8 +6,8 @@ import {
   AiOutlinePause,
   AiOutlineCaretRight,
 } from "react-icons/ai";
-import { mobileClientSocket } from "../../socket";
-import { SOCKET_EMIT } from "../../socket/constant";
+import { mobileClientSocket } from "../../../socket";
+import { SOCKET_EMIT } from "../../../socket/constant";
 
 export type ControlBarProps = {
   onClick?: (isPlaying: boolean) => void;

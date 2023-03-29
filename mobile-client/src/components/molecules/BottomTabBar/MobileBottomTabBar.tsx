@@ -8,11 +8,11 @@ import { HiQueueList } from "react-icons/hi2";
 import { VscVmConnect } from "react-icons/vsc";
 
 import { BiFullscreen } from "react-icons/bi";
-import { mobileClientSocket } from "../../socket";
-import { SOCKET_EMIT } from "../../socket/constant";
+import { mobileClientSocket } from "../../../socket";
+import { SOCKET_EMIT } from "../../../socket/constant";
 import { AiOutlineFullscreen } from "react-icons/ai";
-import { useStore } from "../../store";
-import { throwServerError } from "../../api";
+import { useStore } from "../../../store";
+import { throwServerError } from "../../../api";
 
 export type MobileBottomTabBarProps = {
   children: JSX.Element;

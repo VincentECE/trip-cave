@@ -1,6 +1,6 @@
-import { SceneCard } from "../../components/SceneCard";
+import { SceneCard } from "../SceneCard";
 import { useEffect } from "react";
-import { useStore } from "../../store";
+import { useStore } from "../../../../store";
 import { v4 as uuid } from "uuid";
 
 export const SceneList = (): JSX.Element => {
@@ -13,10 +13,10 @@ export const SceneList = (): JSX.Element => {
     getAllScenes();
   }, [getAllScenes]);
   return (
-    <div>
-      {scenes.map((scene) => {
-        return <SceneCard key={uuid()} scene={scene} />;
-      })}
-    </div>
+    <>
+      {scenes.map((scene) => (
+        <SceneCard key={uuid()} scene={scene} />
+      ))}
+    </>
   );
 };
