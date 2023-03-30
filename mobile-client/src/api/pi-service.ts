@@ -52,7 +52,7 @@ export const throwServerError = async (): Promise<number> => {
   return data;
 };
 
-export const getCurrentStatus = async (): Promise<SceneStatus> => {
+export const getSceneStatus = async (): Promise<SceneStatus> => {
   const options = {
     url: `${url}scene-status`,
     method: "GET",

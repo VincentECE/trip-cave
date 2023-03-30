@@ -5,6 +5,7 @@ import styled from "styled-components";
 import { flex } from "./style/flex";
 import { MobileBottomTabBar } from "./components/BottomTabBar/MobileBottomTabBar";
 import { MediaBar } from "./components/MediaBar";
+import { useStore } from "./store";
 import { QueueList } from "./components/QueueList/QueueList";
 
 const AppContainer = styled.div`
@@ -15,9 +16,13 @@ const AppContainer = styled.div`
 `;
 
 const App = (): JSX.Element => {
+  const { syncSceneStatus } = useStore();
+
   useEffect(() => {
     establishConnection();
-  });
+    syncSceneStatus();
+    console.log("UseEffect from app fired");
+  }, [establishConnection, syncSceneStatus]);
 
   return (
     <AppContainer>
