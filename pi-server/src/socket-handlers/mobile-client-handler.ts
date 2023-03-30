@@ -17,7 +17,7 @@ export type Scene = {
 
 export type SceneStatus = {
   scene: Scene;
-  status: "playing" | "paused";
+  isPlaying: boolean;
 };
 
 export let mobileClientSocket: Socket;
@@ -41,26 +41,24 @@ export const mobileClientHandler = (io: Server, socket: Socket) => {
     mobileClientSocket.emit("serverStatus", { status: "Im good" });
   });
 
-  mobileClientSocket.on("playVideo", () => {
+  mobileClientSocket.on("playScene", () => {
     console.log("playing video");
-    piClientSocket.emit("playVideo");
+
+    sceneStatus.isPlaying = true;
+    mobileClientSocket.broadcast.emit("updateSceneStatus", sceneStatus);
+    piClientSocket.emit("playScene");
   });
 
-  mobileClientSocket.on("pauseVideo", () => {
+  mobileClientSocket.on("pauseScene", () => {
     console.log("Pausing video");
-    sceneStatus.status = "paused";
-    piClientSocket.emit("pauseVideo");
+    sceneStatus.isPlaying = false;
+    piClientSocket.emit("pauseScene");
     mobileClientSocket.emit("updateSceneStatus", sceneStatus);
   });
 
   mobileClientSocket.on("goFullScreen", () => {
     console.log("going full screen");
     piClientSocket.emit("goFullScreen");
-  });
-
-  mobileClientSocket.on("playNextVideo", () => {
-    console.log("switching video");
-    piClientSocket.emit("playNextVideo");
   });
 
   // playSelectedVideo
@@ -72,7 +70,7 @@ export const mobileClientHandler = (io: Server, socket: Socket) => {
 
     sceneStatus = {
       scene: contentMap[sceneId], //sets the current status and stuff
-      status: "playing",
+      isPlaying: true,
     };
 
     mobileClientSocket.broadcast.emit("updateSceneStatus", sceneStatus);

@@ -36,7 +36,7 @@ export const establishConnection = () => {
     playVideo();
   });
 
-  clientSocket.on("pauseVideo", () => {
+  clientSocket.on("pauseScene", () => {
     console.log("Video should be paused");
     pauseVideo();
   });
@@ -52,7 +52,7 @@ export const establishConnection = () => {
     playNextVideo(contentInfo.videoUrl);
   });
 
-  clientSocket.on("playNow", () => {
+  clientSocket.on("playScene", () => {
     console.log("play now from socket");
     playVideo();
   });

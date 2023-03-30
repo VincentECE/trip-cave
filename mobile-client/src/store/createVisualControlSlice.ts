@@ -3,9 +3,10 @@ import { mobileClientSocket } from "../socket";
 import { UnifiedStoreType } from "./useStore";
 
 export interface VisualControlType {
-  playNow: () => void;
+  playScene: () => void;
   playSelectedScene: (sceneId: number) => void;
   goFullScreen: () => void;
+  pauseScene: () => void;
 }
 
 export const createVisualControlSlice: StateCreator<
@@ -14,8 +15,8 @@ export const createVisualControlSlice: StateCreator<
   [],
   VisualControlType
 > = (set, get) => ({
-  playNow: () => {
-    mobileClientSocket.emit("playNow");
+  playScene: () => {
+    mobileClientSocket.emit("playScene");
   },
   playSelectedScene: (sceneId: number) => {
     console.log("playSelectedScene");
@@ -24,5 +25,9 @@ export const createVisualControlSlice: StateCreator<
 
   goFullScreen: () => {
     mobileClientSocket.emit("goFullScreen");
+  },
+
+  pauseScene: () => {
+    mobileClientSocket.emit("pauseScene");
   },
 });

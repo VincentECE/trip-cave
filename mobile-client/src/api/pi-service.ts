@@ -18,7 +18,7 @@ export type Scene = {
 
 export type SceneStatus = {
   scene: Scene;
-  status: "playing" | "paused";
+  isPlaying: boolean;
 };
 
 export const getScenes = async (): Promise<Scene[]> => {
