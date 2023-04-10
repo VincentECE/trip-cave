@@ -86,6 +86,7 @@ export const BaseFlexSpaceEvenlyCenterRow= css`
   justify-content: space-around;
 `
 
+
 export const flex = {
   default: (direction: 'row' | 'column') => direction == "row" ? BaseFlexCenterRow : BaseFlexCenterColumn,
   sideCol: (side: 'left' | 'right') => side == 'right' ? BaseFlexRightColumn : BaseFlexLeftColumn,

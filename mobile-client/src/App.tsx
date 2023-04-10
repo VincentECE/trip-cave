@@ -6,7 +6,6 @@ import { flex } from "./style/flex";
 import { MobileBottomTabBar } from "./components/BottomTabBar/MobileBottomTabBar";
 import { MediaBar } from "./components/MediaBar";
 import { useStore } from "./store";
-import { QueueList } from "./components/QueueList/QueueList";
 
 const AppContainer = styled.div`
   background-color: ${(props) => props.theme.color.appBg};
@@ -21,7 +20,6 @@ const App = (): JSX.Element => {
   useEffect(() => {
     establishConnection();
     syncSceneStatus();
-    console.log("UseEffect from app fired");
   }, [establishConnection, syncSceneStatus]);
 
   return (

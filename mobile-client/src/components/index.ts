@@ -1,3 +1,3 @@
-export * from "./Typography";
-export * from "./SceneCard";
-export * from "./QRCode";
+export * from "./atom/Typography";
+export * from "./atom/Card";
+
