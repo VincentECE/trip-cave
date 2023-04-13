@@ -30,7 +30,7 @@ export const VideoPlayerContainer = styled.div`
   flex-direction: column;
 `;
 
-export const Video = styled.video<{ hide: boolean }>`
+export const Video = styled.video<{ hide: boolean, showFullScreen: boolean}>`
   display: flex;
   justify-content: center;
   align-items: center;
@@ -38,4 +38,14 @@ export const Video = styled.video<{ hide: boolean }>`
   &:fullscreen {
     ${(props) => (props.hide ? animationTransitionIn : animationTransitionOut)}
   }
+  ${props => props.showFullScreen && FullScreenStyle}
 `;
+
+export const FullScreenStyle = css`
+  object-fit: cover;
+  width: 100vw;
+  height: 100vh;
+  position: fixed;
+  top: 0;
+  left: 0;
+`

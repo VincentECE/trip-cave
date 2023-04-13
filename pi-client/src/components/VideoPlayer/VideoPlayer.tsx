@@ -21,6 +21,7 @@ export const VideoPlayer = ({
         autoPlay
         loop
         src={currentVideo}
+        showFullScreen={true}
       />
     </div>
   </VideoPlayerContainer>
