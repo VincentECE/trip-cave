@@ -21,6 +21,7 @@ export const VideoPlayer = ({
         autoPlay
         loop
         src={currentVideo}
+        showFullScreen={true} // <- Connect this with the sockets
       />
     </div>
   </VideoPlayerContainer>
