@@ -103,8 +103,8 @@ dist
 # TernJS port file
 .tern-port
 
-.pi-server/private
+pi-server/private/video-loops
 
-.pi-server/public
+pi-server/public/thumbnail-images
 
 production-build

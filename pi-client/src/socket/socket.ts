@@ -6,7 +6,7 @@ import { contentMap } from "../../../pi-server/content-map";
 // const serverUrl: string = process.env.REACT_APP_PI_URL || 'http://localhost:3001';
 // const serverUrl: string = "http://localhost:3001";
 
-const { pauseVideo, playVideo, goFullScreen, playNextVideo } =
+const { pauseVideo, playVideo, goFullScreen, playNextVideo, videoRef } =
   useStore.getState();
 
 export let clientSocket: Socket;

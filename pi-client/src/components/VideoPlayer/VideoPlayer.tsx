@@ -20,6 +20,7 @@ export const VideoPlayer = ({
         width="100%"
         autoPlay
         loop
+        muted
         src={currentVideo}
         showFullScreen={true} // <- Connect this with the sockets
       />
