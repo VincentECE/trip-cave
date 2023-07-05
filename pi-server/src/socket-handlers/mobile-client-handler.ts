@@ -53,7 +53,7 @@ export const mobileClientHandler = (io: Server, socket: Socket) => {
     console.log("Pausing video");
     sceneStatus.isPlaying = false;
     piClientSocket.emit("pauseScene");
-    mobileClientSocket.emit("updateSceneStatus", sceneStatus);
+    mobileClientSocket.broadcast.emit("updateSceneStatus", sceneStatus);
   });
 
   mobileClientSocket.on("goFullScreen", () => {
