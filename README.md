@@ -7,7 +7,7 @@ This project brings the **sky indoors** using creative **web technologies** and 
 ### **Project Demo 🎥**
 
 <a href="https://www.youtube.com/shorts/WeanAzDGLGY">
-  <img src="./docs/assets/video-thumbnail.png" alt="Sky Projection Demo" width="200" style="display: block; margin: 0 auto;">
+  <img src="https://github.com/user-attachments/assets/458085a8-c085-4b63-8d57-79c1390a2875" alt="Sky Projection Demo" width="200" style="display: block; margin: 0 auto;">
 </a>
 
 _Click the image or link above to watch the demo on YouTube._
@@ -16,8 +16,8 @@ _Click the image or link above to watch the demo on YouTube._
 
 ### **Client UI Preview 🖥️**
 
-<p align="center">
-  <img src="./docs/assets/client-ui.jpg" alt="Client UI" width="200" style="border-radius: 10px;">
+<p>
+  <img src="https://github.com/user-attachments/assets/b63c17cb-a947-43d5-a216-f9f46851cee8" alt="Client UI" width="200" style="border-radius: 10px;">
 </p>
 
 _Preview of the client-side user interface used for controlling the projection setup._
