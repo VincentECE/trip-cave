@@ -1,6 +1,6 @@
 # **Projection Mapping Sky Project 🌌**
 
-This project brings the **sky indoors** using creative **web technologies** and projection mapping. It allows users to project a dynamic sky onto a ceiling, controlled via a smartphone app. The project highlights the integration of **React**, **Express**, **socket.io**, and **Millumin** with customized hardware for a seamless projection experience.
+This project brings the **sky indoors** using creative **web technologies** and projection mapping. It allows users to project a dynamic sky onto a ceiling, controlled via a smartphone app. The project highlights the integration of **React**, **Express**, **socket.io**, and **Millumin** with customized hardware for a seamless projection experience. This project is intended to show a working proof of concept in a short amount of time
 
 ---
 
