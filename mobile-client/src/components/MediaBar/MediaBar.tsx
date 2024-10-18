@@ -1,4 +1,3 @@
-import { useState } from "react";
 import { ControlContainer, IconContainer } from "./MediaBar.style";
 import {
   AiOutlineForward,

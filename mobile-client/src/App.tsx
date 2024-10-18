@@ -7,6 +7,7 @@ import { MobileBottomTabBar } from "./components/BottomTabBar/MobileBottomTabBar
 import { MediaBar } from "./components/MediaBar";
 import { useStore } from "./store";
 import { QueueList } from "./components/QueueList/QueueList";
+import { CurrentMediaInfo } from "./components/CurrentMediaInfo";
 
 const AppContainer = styled.div`
   background-color: ${(props) => props.theme.color.appBg};
@@ -29,6 +30,7 @@ const App = (): JSX.Element => {
       <Main />
       <MobileBottomTabBar>
         <MediaBar />
+        <CurrentMediaInfo />
       </MobileBottomTabBar>
     </AppContainer>
   );

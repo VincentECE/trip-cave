@@ -9,9 +9,10 @@ import { VscVmConnect } from "react-icons/vsc";
 import { AiOutlineFullscreen } from "react-icons/ai";
 import { useStore } from "../../store";
 import { throwServerError } from "../../api";
+import { ReactNode } from "react";
 
 export type MobileBottomTabBarProps = {
-  children: JSX.Element;
+  children: ReactNode;
 };
 
 export const MobileBottomTabBar = ({ children }: MobileBottomTabBarProps) => {
