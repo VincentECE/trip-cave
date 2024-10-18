@@ -4,6 +4,8 @@ This project brings the **sky indoors** using creative **web technologies** and 
 
 [![Sky Projection Demo](./docs/assets/video-thumbnail.png)](https://drive.google.com/file/d/1rXdzFEjkpfIa0cRgUh0jL7Pn_blmNkA1/view?usp=drive_link)
 
+![Client Ui](./docs/assets/client-ui.jpg)
+
 ---
 
 ## **Table of Contents**
