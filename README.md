@@ -7,7 +7,7 @@ This project brings the **sky indoors** using creative **web technologies** and 
 ### **Project Demo 🎥**
 
 <a href="https://www.youtube.com/shorts/WeanAzDGLGY">
-  <img src="https://github.com/user-attachments/assets/458085a8-c085-4b63-8d57-79c1390a2875" alt="Sky Projection Demo" width="200" style="display: block; margin: 0 auto;">
+  <img src="https://github.com/user-attachments/assets/93c6c254-b17e-4b8c-af3f-e89708321cd5" alt="Sky Projection Demo" width="200" style="display: block; margin: 0 auto;">
 </a>
 
 _Click the image or link above to watch the demo on YouTube._
